@@ -29,12 +29,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="public\config.json" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Home.vue" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\components\nav.vue" />
+    <Content Include="src\store\index.js" />
+    <Content Include="src\style.scss" />
+    <Content Include="src\views\layout.vue" />
+    <Content Include="src\views\main.vue" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
