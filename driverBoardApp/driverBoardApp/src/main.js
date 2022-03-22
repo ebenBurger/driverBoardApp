@@ -6,7 +6,7 @@ import VueMq from "vue-mq";
 import store from "@/store";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faAddressBook, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faHome } from '@fortawesome/free-solid-svg-icons'
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 

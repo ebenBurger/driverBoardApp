@@ -35,15 +35,14 @@
     <Content Include="src\App.vue" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\components\nav.vue" />
+    <Content Include="src\components\largeScreen\nav.vue" />
     <Content Include="src\store\index.js" />
     <Content Include="src\style.scss" />
-    <Content Include="src\views\contacts.vue" />
-    <Content Include="src\views\layout.vue" />
-    <Content Include="src\views\main.vue" />
+    <Content Include="src\views\largeScreen\contacts.vue" />
+    <Content Include="src\views\largeScreen\layout.vue" />
+    <Content Include="src\views\largeScreen\main.vue" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dist\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\components\" />

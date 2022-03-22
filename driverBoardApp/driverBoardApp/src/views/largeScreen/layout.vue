@@ -6,8 +6,8 @@
         <mq-layout mq="tablet+" class="layout">
             <div>
                 <Nav />
+                <br />
                 <router-view></router-view>
-                
             </div>
         </mq-layout>
     </div>
@@ -15,7 +15,8 @@
 
 <script>
 
-import Nav from "@/components/nav";
+import Nav from "@/components/largeScreen/nav";
+
 export default {
     components: {Nav},
     data: () => ({}),
