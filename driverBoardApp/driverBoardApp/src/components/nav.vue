@@ -1,15 +1,22 @@
 <template>
     <div>
-        <b-nav horizontal>
-            <b-list-group-item>
-                <router-link to="/">
-                    <b-icon-house-door></b-icon-house-door>Home
-                </router-link>
-                <router-link to="/about">
-                    <b-icon-house-door></b-icon-house-door>About
-                </router-link>
-            </b-list-group-item>
-        </b-nav>
+        <b-navbar class="navbar">
+            <b-navbar-brand>
+                Atrax Logistics    
+            </b-navbar-brand>
+            <div>
+                <b-navbar-nav>
+                    <router-link exact-active-class="active" to="/">
+                        <font-awesome-icon icon="fa-home" />
+                        Vehicle
+                    </router-link>
+                    <router-link exact-active-class="active" to="/contacts">
+                        <font-awesome-icon icon="fa-address-book" />
+                        Contacts
+                    </router-link>
+                </b-navbar-nav>
+            </div>
+        </b-navbar>
     </div>
 </template>
 
@@ -34,6 +41,35 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+li {
+    
+}
 
+a {
+    color: black;
+    margin: 0 0.3rem;
+    background: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
 
+ul a:hover {
+    color: white;
+    text-decoration: none;
+    background: blue;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
+
+.active {
+    color: white;
+    text-decoration: none;
+    background: blue;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
 </style>
