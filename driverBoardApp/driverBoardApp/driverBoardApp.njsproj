@@ -38,6 +38,7 @@
     <Content Include="src\components\nav.vue" />
     <Content Include="src\store\index.js" />
     <Content Include="src\style.scss" />
+    <Content Include="src\views\contacts.vue" />
     <Content Include="src\views\layout.vue" />
     <Content Include="src\views\main.vue" />
   </ItemGroup>
@@ -46,6 +47,8 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\store\" />
+    <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />
