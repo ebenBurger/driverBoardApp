@@ -3,10 +3,11 @@
         <mq-layout mq="mobile">
             <h1>Coming soon</h1>
         </mq-layout>
-        <mq-layout mq="tablet+">
+        <mq-layout mq="tablet+" class="layout">
             <div>
                 <Nav />
                 <router-view></router-view>
+                
             </div>
         </mq-layout>
     </div>

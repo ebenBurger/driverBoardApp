@@ -4,10 +4,9 @@ import VueRouter from "vue-router";
 import Routes from './router/index'
 import VueMq from "vue-mq";
 import store from "@/store";
-import VueBottomNavigation from "bottom-navigation-vue";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBell, faCog, faHatWizard, faHome, faLayerGroup, faUser } from '@fortawesome/free-solid-svg-icons'
+import {faAddressBook, faHome } from '@fortawesome/free-solid-svg-icons'
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
@@ -15,12 +14,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './style.scss'
 
-Vue.config.productionTip = true;
+Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
-Vue.use(VueBottomNavigation);
 Vue.use(VueMq, {
     breakpoints: {
         mobile: 450,
@@ -43,7 +41,7 @@ Vue.filter('dateTimeFilter', function (value) {
 })
 
 //FA icons
-library.add(faHatWizard, faHome, faLayerGroup, faCog, faUser, faBell)
+library.add( faHome, faAddressBook )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
