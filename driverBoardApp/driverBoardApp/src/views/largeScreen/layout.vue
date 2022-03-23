@@ -16,8 +16,10 @@
 <script>
 
 import Nav from "@/components/largeScreen/nav";
+import {mapMutations} from "vuex";
 
 export default {
+    ...mapMutations(['setApiUrl']),
     components: {Nav},
     data: () => ({}),
     beforeCreate() {},
