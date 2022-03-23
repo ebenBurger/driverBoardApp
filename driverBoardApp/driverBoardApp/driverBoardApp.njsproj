@@ -36,11 +36,13 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\components\largeScreen\nav.vue" />
+    <Content Include="src\router\index.js" />
     <Content Include="src\store\index.js" />
     <Content Include="src\style.scss" />
     <Content Include="src\views\largeScreen\contacts.vue" />
     <Content Include="src\views\largeScreen\layout.vue" />
-    <Content Include="src\views\largeScreen\main.vue" />
+    <Content Include="src\views\largeScreen\vehicles\main.vue" />
+    <Content Include="src\views\largeScreen\vehicles\viewVehicle.vue" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
