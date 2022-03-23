@@ -45,31 +45,28 @@ export default {
     display: flex;
     justify-content: space-between;
 }
-/*li {*/
-/*    */
-/*}*/
 
-/*a {*/
-/*    color: black;*/
-/*    margin: 0 0.3rem;*/
-/*    background: white;*/
-/*    padding: 0.1rem 0.4rem;*/
-/*    border-radius: 12px;*/
-/*}*/
+a {
+    color: black;
+    margin: 0 0.3rem;
+    background: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
 
-/*ul a:hover {*/
-/*    color: white;*/
-/*    text-decoration: none;*/
-/*    background: blue;*/
-/*    padding: 0.1rem 0.4rem;*/
-/*    border-radius: 12px;*/
-/*}*/
+ul a:hover {
+    color: white;
+    text-decoration: none;
+    background: blue;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
 
-/*.active {*/
-/*    color: white;*/
-/*    text-decoration: none;*/
-/*    background: blue;*/
-/*    padding: 0.1rem 0.4rem;*/
-/*    border-radius: 12px;*/
-/*}*/
+.active {
+    color: white;
+    text-decoration: none;
+    background: blue;
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+}
 </style>
