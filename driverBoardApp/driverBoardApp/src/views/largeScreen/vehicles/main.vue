@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     name: "main",
     data: () => ({
@@ -70,22 +72,22 @@ export default {
             resultsPerPage: 10,
             currentPage: 1,
             dataSource: [
-                {id: 1, make: 'UP', model: 'VW', location: 'JHB'},
-                {id: 2, make: 'Hyundai', model: 'H-100', location: 'JHB'},
-                {id: 1, make: 'UP', model: 'VW', location: 'CPT'},
-                {id: 2, make: 'Hyundai', model: 'H-100', location: 'CPT'},
+                // {id: 1, make: 'UP', model: 'VW', location: 'JHB'},
+                // {id: 2, make: 'Hyundai', model: 'H-100', location: 'JHB'},
+                // {id: 1, make: 'UP', model: 'VW', location: 'CPT'},
+                // {id: 2, make: 'Hyundai', model: 'H-100', location: 'CPT'},
             ],
             isLoading: false,
             tableColumns: [
                 {
                     label: 'Make',  
-                    key: 'make',
+                    key: 'makeVehicle',
                     sortable: true,
                     tdClass:'',
                 },
                 {
                     label: 'Model',
-                    key: 'model',
+                    key: 'modelVehicle',
                     sortable: true,
                     tdClass:'',
                 },
@@ -105,6 +107,7 @@ export default {
         }
     }),
     created() {
+        this.vehicleRequest()
     },
     beforeMount() {
     },
@@ -115,8 +118,24 @@ export default {
     updated() {
     },
     methods: {
+        ...mapActions(['getAllVehiclesRequest']),
+        
+        vehicleRequest() {
+            this.vehicleData.isLoading = true
+            
+            const request = []
+            this.$store.commit('setVehicleRequest', request)
+            this.getAllVehiclesRequest()
+            .then((response) => {
+                console.log("DATA", response.data)
+                this.vehicleData.isLoading = false
+                this.vehicleData.dataSource = response.data
+            })
+        },
+        
         openVehicle(vehicle) {
-            this.$store.commit('setSelectedVehicle', vehicle)
+            console.log("VEHICLE", vehicle)
+            // this.$store.commit('setSelectedVehicle', vehicle)
             this.$router.push({path: '/viewVehicle'})
         },
     },

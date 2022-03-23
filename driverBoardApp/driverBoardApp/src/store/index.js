@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import axios from 'axios'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        baseUrl: '',
+        baseUrl: 'https://localhost:5001/',
         
-        selectedVehicle: null
+        //selected
+        
+        //requests and initial states
+        vehicleRequest: null,
     },
     
     mutations: {
@@ -17,8 +20,32 @@ export default new Vuex.Store({
             localStorage.setItem('apiUrl', payload)
         },
         
-        setSelectedVehicle: (state, payload) => {{state.selectedVehicle = payload}}
+        setVehicleRequest: (state, payload) => {state.vehicleRequest = payload}
+        
     },
-    actions: {},
+    actions: {
+        getAllVehiclesRequest: ({state}) => {
+            console.log('STATE', state)
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Vehicle/getAll',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                
+                axios(callConfig)
+                    .then(response => {
+                        console.log('STATE', state)
+                        state.vehicleRequest = response.data
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        }
+    },
     modules: {}
 })
