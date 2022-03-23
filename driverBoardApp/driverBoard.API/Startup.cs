@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using driverBoard.API.Interface;
+using driverBoard.API.Managers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace driverBoard.API
 {
@@ -30,11 +33,20 @@ namespace driverBoard.API
         {
 
             services.AddControllers();
+            services.AddDbContext<DriverAppContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
+            //adds CORS policy
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "driverBoard.API", Version = "v1" });
             });
-            services.AddDbContext<DriverAppContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
+            
+            services.TryAddScoped<IVehicleManager, VehicleManager>();
+            
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +58,12 @@ namespace driverBoard.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "driverBoard.API v1"));
             }
+            
+            //Allow CORS connection
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
