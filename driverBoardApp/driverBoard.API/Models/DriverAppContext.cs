@@ -6,6 +6,6 @@ namespace driverBoard.API.Models
     {
         public DriverAppContext(DbContextOptions options) : base(options) { }
 
-        DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
     }
 }
