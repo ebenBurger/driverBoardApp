@@ -48,8 +48,12 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\largeScreen\" />
+    <Folder Include="src\router\" />
     <Folder Include="src\store\" />
     <Folder Include="src\views\" />
+    <Folder Include="src\views\largeScreen\" />
+    <Folder Include="src\views\largeScreen\vehicles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />

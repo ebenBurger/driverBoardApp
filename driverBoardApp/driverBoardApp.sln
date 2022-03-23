@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "driverBoardApp", "driverBoardApp\driverBoardApp.njsproj", "{AB6986F7-0132-47F7-996F-640256FA6B45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "driverBoard.API", "driverBoard.API\driverBoard.API.csproj", "{F2971FBF-4520-4C4D-BA88-AB19E06FD629}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AB6986F7-0132-47F7-996F-640256FA6B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB6986F7-0132-47F7-996F-640256FA6B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB6986F7-0132-47F7-996F-640256FA6B45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2971FBF-4520-4C4D-BA88-AB19E06FD629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2971FBF-4520-4C4D-BA88-AB19E06FD629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2971FBF-4520-4C4D-BA88-AB19E06FD629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2971FBF-4520-4C4D-BA88-AB19E06FD629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
