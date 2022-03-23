@@ -4,3 +4,5 @@ node_modules
 bin
 obj
 dist
+.cache
+obj
