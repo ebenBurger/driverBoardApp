@@ -116,7 +116,8 @@ export default {
     },
     methods: {
         openVehicle(vehicle) {
-            console.log('VEHICLE', vehicle)
+            this.$store.commit('setSelectedVehicle', vehicle)
+            this.$router.push({path: '/viewVehicle'})
         },
     },
     computed: {
