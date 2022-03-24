@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using driverBoard.API.Models;
 
 namespace driverBoard.API.Migrations
 {
     [DbContext(typeof(DriverAppContext))]
-    partial class DriverAppContextModelSnapshot : ModelSnapshot
+    [Migration("20220323142320_UpdatedVehicleTableDataColums")]
+    partial class UpdatedVehicleTableDataColums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace driverBoard.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("IsActive")
