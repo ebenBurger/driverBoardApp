@@ -8,6 +8,9 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4 class="m-0">Vehicle View</h4>
                             </div>
+                            <b-col class="text-right">
+                                <b-button variant="outline-primary" size="sm" squared @click="addVehicle">Add Vehicle</b-button>
+                            </b-col>
                         </b-col>
                     </b-row>
                     
@@ -71,12 +74,7 @@ export default {
         vehicleData: {
             resultsPerPage: 10,
             currentPage: 1,
-            dataSource: [
-                // {id: 1, make: 'UP', model: 'VW', location: 'JHB'},
-                // {id: 2, make: 'Hyundai', model: 'H-100', location: 'JHB'},
-                // {id: 1, make: 'UP', model: 'VW', location: 'CPT'},
-                // {id: 2, make: 'Hyundai', model: 'H-100', location: 'CPT'},
-            ],
+            dataSource: [],
             isLoading: false,
             tableColumns: [
                 {
@@ -131,6 +129,10 @@ export default {
                 this.vehicleData.isLoading = false
                 this.vehicleData.dataSource = response.data
             })
+        },
+        
+        addVehicle() {
+            this.$router.push({path: '/addVehicle'})
         },
         
         openVehicle(vehicle) {
