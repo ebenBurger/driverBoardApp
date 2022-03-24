@@ -1,6 +1,7 @@
 ﻿using System;
 using driverBoard.API.Interface;
 using driverBoard.API.Managers;
+using driverBoard.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace driverBoard.API.Controllers
@@ -29,6 +30,26 @@ namespace driverBoard.API.Controllers
                 {
                     return NotFound();
                 }
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+        
+        //Save
+        [HttpPost("Save")]
+        public IActionResult SaveVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                var data = _vehicleManager.SaveVehicle(vehicle);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
                 return Ok(data);
             }
             catch (Exception e)
