@@ -9,7 +9,9 @@
                                 <h4 class="m-0">Vehicle View</h4>
                             </div>
                             <b-col class="text-right">
-                                <b-button variant="outline-primary" size="sm" squared @click="addVehicle">Add Vehicle</b-button>
+                                <b-button variant="outline-primary" size="sm" squared @click="addVehicle">
+                                    <font-awesome-icon icon="fa-plus" class="mr-1"/>Vehicle
+                                </b-button>
                             </b-col>
                         </b-col>
                     </b-row>

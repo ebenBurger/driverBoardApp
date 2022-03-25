@@ -1,8 +1,8 @@
 <template>
     <div>
-        <b-row>
-            <b-col>
-                <b-card>
+        <b-row class="align-items-center vh-100 m-0 ">
+            <b-col class="d-flex justify-content-center vw-100">
+                <b-card class="w-25">
                     <b-row>
                         <B-col>
                             <div class="d-flex justify-content-between align-items-center">
@@ -13,15 +13,19 @@
                     </b-row>
                     <B-form>
                         <b-row>
-                            <b-col cols="4">
+                            <b-col>
                                 <label>Make</label>
                                 <b-form-input v-model="selectedVehicle.makeVehicle"></b-form-input>
                             </b-col>
-                            <b-col cols="4">
+                        </b-row>
+                        <b-row>
+                            <b-col>
                                 <label>Model</label>
                                 <b-form-input v-model="selectedVehicle.modelVehicle"></b-form-input>
                             </b-col>
-                            <b-col cols="4">
+                        </b-row>
+                        <b-row>
+                            <b-col>
                                 <label>Location</label>
                                 <b-form-input v-model="selectedVehicle.location"></b-form-input>
                             </b-col>
