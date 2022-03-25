@@ -45,7 +45,7 @@ namespace driverBoard.API
             });
             
             services.TryAddScoped<IAddressBookManager, AddressBookManager>();
-            // services.TryAddScoped<>();
+            services.TryAddScoped<IContactManager, ContactManager>();
             // services.TryAddScoped<>();
             services.TryAddScoped<IVehicleManager, VehicleManager>();
             
