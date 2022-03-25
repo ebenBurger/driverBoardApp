@@ -12,7 +12,7 @@ namespace driverBoard.API.Controllers
     
     public class VehicleController : Controller
     {
-        private IVehicleManager _vehicleManager;
+        private readonly IVehicleManager _vehicleManager;
 
         public VehicleController(IVehicleManager vehicleManager)
         {
