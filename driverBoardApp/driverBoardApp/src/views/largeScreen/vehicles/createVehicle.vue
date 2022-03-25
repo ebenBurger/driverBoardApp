@@ -77,8 +77,9 @@ export default {
         save(){
             const request = {
                 modelVehicle: this.vehicleValues.model,
-                makeVehicle: this.vehicleValues.model,
+                makeVehicle: this.vehicleValues.make,
                 location: this.vehicleValues.location,
+                isActive: true,
             }
             
             this.$store.commit('setVehicleCreateRequest', request)
