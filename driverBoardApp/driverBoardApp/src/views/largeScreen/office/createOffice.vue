@@ -30,10 +30,7 @@
                             </b-col>
                         </b-row>
                         <b-row>
-                            <b-col class="col-2">
-                                <label>Post Code</label>
-                                <b-form-input v-model="officeData.postCode"></b-form-input>
-                            </b-col>
+                            
                         </b-row>
                         <b-row>
                             <b-col>
@@ -46,6 +43,14 @@
                             </b-col>
                         </b-row>
                         <b-row>
+                            <b-col class="col-2">
+                                <label>Post Code</label>
+                                <b-form-input v-model="officeData.postCode"></b-form-input>
+                            </b-col>
+                            <b-col cols="4">
+                                <label>Location</label>
+                                <b-form-input v-model="officeData.location"></b-form-input>
+                            </b-col>
                             <b-col class="col-3">
                                 <label>Telephone Number</label>
                                 <b-form-input v-model="officeData.tellNumber"></b-form-input>
@@ -82,6 +87,7 @@ export default {
             postCode: null,
             city: null,
             provence: null,
+            location: null,
             tellNumber: null,
         },
     }),

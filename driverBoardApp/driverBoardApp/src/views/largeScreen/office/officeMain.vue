@@ -20,12 +20,12 @@
                         <b-col>
                             <B-table
                                 striped hover
-                                :items="officeData.dataSource"
-                                :fields="officeData.tableColumns"
-                                :busy="officeData.isLoading"
+                                :items="officeTable.dataSource"
+                                :fields="officeTable.tableColumns"
+                                :busy="officeTable.isLoading"
                                 @row-clicked="openOffice"
                                 id="vehicleTable"
-                                :current-page="officeData.currentPage">
+                                :current-page="officeTable.currentPage">
 
                                 <template #table-busy>
                                     <div class="text-center my-2">
@@ -45,9 +45,9 @@
 
                             <b-row align-h="center" >
                                 <b-pagination
-                                    v-model="officeData.currentPage"
+                                    v-model="officeTable.currentPage"
                                     :total-rows="rows"
-                                    :per-page="officeData.resultsPerPage"
+                                    :per-page="officeTable.resultsPerPage"
                                     aria-controls="contactTable"
                                 ></b-pagination>
                             </b-row>
@@ -63,7 +63,7 @@
 <script>
 export default {
     data: () => ({
-        officeData: {
+        officeTable: {
             resultsPerPage: 10,
             currentPage: 1,
             dataSource: [],
@@ -116,7 +116,7 @@ export default {
     },
     computed: {
         rows(){
-            return this.officeData.dataSource.length
+            return this.officeTable.dataSource.length
         },
     },
 }
