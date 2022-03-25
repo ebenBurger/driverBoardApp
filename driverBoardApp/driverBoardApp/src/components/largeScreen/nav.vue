@@ -10,7 +10,11 @@
                         <font-awesome-icon icon="fa-home" />
                         Vehicle
                     </router-link>
-                    <router-link exact-active-class="active" to="/contacts">
+                    <router-link exact-active-class="active" to="/office">
+                        <font-awesome-icon icon="fa-building" />
+                        Offices
+                    </router-link>
+                    <router-link exact-active-class="active" to="/contact">
                         <font-awesome-icon icon="fa-address-book" />
                         Contacts
                     </router-link>

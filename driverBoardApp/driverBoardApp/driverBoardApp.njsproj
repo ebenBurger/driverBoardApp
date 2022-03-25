@@ -39,8 +39,10 @@
     <Content Include="src\router\index.js" />
     <Content Include="src\store\index.js" />
     <Content Include="src\style.scss" />
-    <Content Include="src\views\largeScreen\contacts.vue" />
+    <Content Include="src\views\largeScreen\contact.vue" />
     <Content Include="src\views\largeScreen\layout.vue" />
+    <Content Include="src\views\largeScreen\office\createOffice.vue" />
+    <Content Include="src\views\largeScreen\office\officeMain.vue" />
     <Content Include="src\views\largeScreen\vehicles\createVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\editVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\main.vue" />
@@ -55,6 +57,7 @@
     <Folder Include="src\store\" />
     <Folder Include="src\views\" />
     <Folder Include="src\views\largeScreen\" />
+    <Folder Include="src\views\largeScreen\contact" />
     <Folder Include="src\views\largeScreen\vehicles\" />
   </ItemGroup>
   <ItemGroup>
