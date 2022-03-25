@@ -9,7 +9,8 @@ import officeMain from "@/views/largeScreen/office/officeMain";
 import createOffice from "@/views/largeScreen/office/createOffice";
 
 //contact
-import contact from "@/views/largeScreen/contact";
+import contact from "@/views/largeScreen/contact/contact";
+import createContact from "@/views/largeScreen/contact/createContact";
 
 export default [
     {
@@ -51,5 +52,12 @@ export default [
         path: '/addOffice',
         name: 'addOffice',
         component: createOffice,
+    },
+
+    //additional Contact pages
+    {
+        path: '/addContact',
+        name: 'addContact',
+        component: createContact,
     },
 ]  
