@@ -9,10 +9,12 @@ export default new Vuex.Store({
         baseUrl: '',
         
         //selected
+        selectedVehicle: null,
         
         //requests and initial states
         vehicleRequest: null,
         vehicleCreateRequest: null,
+        // updateVehicleRequest: null,
     },
     
     mutations: {
@@ -23,12 +25,12 @@ export default new Vuex.Store({
         
         setVehicleRequest: (state, payload) => {state.vehicleRequest = payload},
         setVehicleCreateRequest: (state, payload) => {state.vehicleCreateRequest = payload},
+        setSelectedVehicle: (state, payload) => {state.selectedVehicle = payload},
         
     },
     actions: {
         //vehicles
         getAllVehiclesRequest: ({state}) => {
-            console.log('STATE', state)
             return new Promise((resolve, reject) => {
                 const callConfig = {
                     method: 'get',
@@ -40,8 +42,7 @@ export default new Vuex.Store({
                 
                 axios(callConfig)
                     .then(response => {
-                        console.log('STATE', state)
-                        state.vehicleRequest = response.data
+                        state.vehicleDetail = response.data
                         resolve(response)
                     })
                     .catch(err => {
@@ -66,6 +67,45 @@ export default new Vuex.Store({
                 .then(response => {
                     resolve(response)
                 })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+        getVehicleDetails: ({state}) => {
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Vehicle/get/' + state.selectedVehicle.id,
+                    headers: {},
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.vehicle = response.data
+                        resolve(response)
+                    })
+                    .catch( err => {
+                        reject(err)
+                    })
+            })
+        },
+        updateVehicle: ({state}) => {
+            const payload = state.selectedVehicle
+            
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Vehicle/Update',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload,
+                }
+                
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
                     .catch(err => {
                         reject(err)
                     })

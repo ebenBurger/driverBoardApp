@@ -1,8 +1,8 @@
 import layout from "@/views/largeScreen/layout";
 //vehicle
 import main from "@/views/largeScreen/vehicles/main";
-import viewVehicle from "@/views/largeScreen/vehicles/viewVehicle";
 import createVehicle from "@/views/largeScreen/vehicles/createVehicle";
+import editVehicle from "@/views/largeScreen/vehicles/editVehicle";
 
 //contact
 import contacts from "@/views/largeScreen/contacts";
@@ -29,9 +29,9 @@ export default [
                 component: createVehicle,
             },
             {
-                path: '/viewVehicle',
-                name: 'viewVehicle',
-                component: viewVehicle,
+                path: '/editVehicle',
+                name: 'editVehicle',
+                component: editVehicle,
             },
         ]
     }
