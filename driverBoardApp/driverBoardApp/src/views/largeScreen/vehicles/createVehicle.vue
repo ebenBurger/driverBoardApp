@@ -24,7 +24,20 @@
                         <b-row>
                             <b-col>
                                 <label>Location</label>
-                                <b-form-input v-model="vehicleValues.location"></b-form-input>
+                                <b-form-select v-model="vehicleValues.location">
+                                    <b-form-select-option v-for="(item, index) in locations" :key="index" :value="item">{{item.name}}</b-form-select-option>
+                                </b-form-select>
+<!--                                <b-form-input v-model="vehicleValues.location"></b-form-input>-->
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col>
+                                <label>Odometer</label>
+                                <b-form-input v-model="vehicleValues.odometer"></b-form-input>
+                            </b-col>
+                            <b-col>
+                                <label>Model Year</label>
+                                <b-form-input v-model="vehicleValues.modelYear"></b-form-input>
                             </b-col>
                         </b-row>
                         <hr class="mx-3">
@@ -56,8 +69,13 @@ export default {
             model: null,
             make: null,
             location: null,
-            
-        }
+            odometer: null,
+            modelYear: null,
+        },
+        locations: [
+            {id: 1, name: "Johannesburg"},
+            {id: 2, name: "Cape Town"},
+        ],
     }),
     beforeCreate() {
     },

@@ -20,12 +20,12 @@
                         <b-col>
                             <B-table
                                 striped hover
-                                :items="vehicleData.dataSource"
-                                :fields="vehicleData.tableColumns"
-                                :busy="vehicleData.isLoading"
+                                :items="vehicleTable.dataSource"
+                                :fields="vehicleTable.tableColumns"
+                                :busy="vehicleTable.isLoading"
                                 @row-clicked="openVehicle"
                                 id="vehicleTable"
-                                :current-page="vehicleData.currentPage">
+                                :current-page="vehicleTable.currentPage">
 
                                 <template #table-busy>
                                     <div class="text-center my-2">
@@ -45,9 +45,9 @@
 
                             <b-row align-h="center" >
                                 <b-pagination
-                                    v-model="vehicleData.currentPage"
+                                    v-model="vehicleTable.currentPage"
                                     :total-rows="rows"
-                                    :per-page="vehicleData.resultsPerPage"
+                                    :per-page="vehicleTable.resultsPerPage"
                                     aria-controls="contactTable"
                                 ></b-pagination>
                             </b-row>
@@ -67,7 +67,7 @@ export default {
     name: "main",
     data: () => ({
         state: 'loading',
-        vehicleData: {
+        vehicleTable: {
             resultsPerPage: 10,
             currentPage: 1,
             dataSource: [],
@@ -88,6 +88,12 @@ export default {
                 {
                     label: 'Location',
                     key: 'location',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: 'Odometer',
+                    key: 'odometer',
                     sortable: true,
                     tdClass:'',
                 },
@@ -115,15 +121,14 @@ export default {
         ...mapActions(['getAllVehiclesRequest']),
         
         vehicleRequest() {
-            this.vehicleData.isLoading = true
+            this.vehicleTable.isLoading = true
             
             const request = []
             this.$store.commit('setVehicleRequest', request)
             this.getAllVehiclesRequest()
             .then((response) => {
-                console.log("DATA", response.data)
-                this.vehicleData.isLoading = false
-                this.vehicleData.dataSource = response.data
+                this.vehicleTable.isLoading = false
+                this.vehicleTable.dataSource = response.data
             })
         },
         
@@ -132,14 +137,13 @@ export default {
         },
         
         openVehicle(vehicle) {
-            console.log("VEHICLE", vehicle)
             this.$store.commit('setSelectedVehicle', vehicle)
             this.$router.push({path: '/editVehicle'})
         },
     },
     computed: {
         rows() {
-            return this.vehicleData.dataSource.length
+            return this.vehicleTable.dataSource.length
         }
     },
 }
