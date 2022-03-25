@@ -20,7 +20,7 @@ namespace driverBoard.API.Managers
         }
         public List<Vehicle> GetAllVehicles()
         {
-            var vehicle = _context.Vehicles.ToList();
+            var vehicle = _context.Vehicles.Where(a => a.IsActive == true).ToList();
             return vehicle;
         }
 
@@ -47,6 +47,41 @@ namespace driverBoard.API.Managers
 
             await _context.SaveChangesAsync();
             return vehicle.Id;
+        }
+
+        public Vehicle GetVehicleById (int vehicleId)
+        {
+            try
+            {
+                var data = _context.Vehicles.Single(a => a.Id == vehicleId);
+                return data;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<Vehicle> UpdateVehicleDetails(Vehicle vehicle)
+        {
+            try
+            {
+                if (vehicle.Id == 0)
+                {
+                    throw new Exception("Invalid Vehicle ID");
+                }
+
+                _context.Vehicles.Update(vehicle);
+                await _context.SaveChangesAsync();
+                return vehicle;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

@@ -57,5 +57,48 @@ namespace driverBoard.API.Controllers
                 return Problem(e.Message);
             }
         }
+        
+        //getBy Id
+        [HttpGet("get/{vehicleId}")]
+        public IActionResult GetById(int vehicleId)
+        {
+            try
+            {
+                var data = _vehicleManager.GetVehicleById(vehicleId);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(data);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        //updated vehicle
+        [HttpPost("Update")]
+        public IActionResult UpdateVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                var data = _vehicleManager.UpdateVehicleDetails(vehicle);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
     }
 }
