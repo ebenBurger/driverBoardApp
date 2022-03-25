@@ -28,17 +28,10 @@ namespace driverBoard.API.Managers
         {
             try
             {
-                if (vehicle.VehicleId != 0)
-                {
-                    _context.Vehicles.Update(vehicle);
-                }
-                else
-                {
-                    vehicle.DateCreated = Convert.ToDateTime(DateTime.Now.ToLocalTime()
+                vehicle.DateCreated = Convert.ToDateTime(DateTime.Now.ToLocalTime()
                         .ToString(System.Globalization.CultureInfo.InvariantCulture));
                     vehicle.DateCreated = vehicle.DateCreated;
                     _context.Vehicles.Add(vehicle);
-                }
             }
             catch (Exception err)
             {
