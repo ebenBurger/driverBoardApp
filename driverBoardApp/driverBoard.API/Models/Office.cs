@@ -17,10 +17,12 @@ namespace driverBoard.API.Models
         public string PostCode { get; set; }
         public string City { get; set; }
         public string Provence { get; set; }
+        public string Location { get; set; }
         public string TellNumber { get; set; }
         public DateTime DateCreated { get; set; }
 
         // relationship added- Navigation property
         public List<Vehicle> Vehicles { get; set; }
+        public List<PickUpLocation> PickUpLocations { get; set; }
     }
 }

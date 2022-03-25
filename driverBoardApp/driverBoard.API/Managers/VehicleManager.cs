@@ -28,7 +28,7 @@ namespace driverBoard.API.Managers
         {
             try
             {
-                if (vehicle.Id != 0)
+                if (vehicle.VehicleId != 0)
                 {
                     _context.Vehicles.Update(vehicle);
                 }
@@ -46,14 +46,14 @@ namespace driverBoard.API.Managers
             }
 
             await _context.SaveChangesAsync();
-            return vehicle.Id;
+            return vehicle.VehicleId;
         }
 
         public Vehicle GetVehicleById (int vehicleId)
         {
             try
             {
-                var data = _context.Vehicles.Single(a => a.Id == vehicleId);
+                var data = _context.Vehicles.Single(a => a.VehicleId == vehicleId);
                 return data;
             }
             catch (Exception e)
@@ -67,7 +67,7 @@ namespace driverBoard.API.Managers
         {
             try
             {
-                if (vehicle.Id == 0)
+                if (vehicle.VehicleId == 0)
                 {
                     throw new Exception("Invalid Vehicle ID");
                 }
