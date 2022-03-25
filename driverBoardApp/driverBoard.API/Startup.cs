@@ -41,9 +41,12 @@ namespace driverBoard.API
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "driverBoard.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Driver Board Application", Version = "v1" });
             });
             
+            services.TryAddScoped<IAddressBookManager, AddressBookManager>();
+            // services.TryAddScoped<>();
+            // services.TryAddScoped<>();
             services.TryAddScoped<IVehicleManager, VehicleManager>();
             
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
