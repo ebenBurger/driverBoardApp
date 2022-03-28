@@ -18,7 +18,5 @@ namespace driverBoard.API.Models
         public int PostalCode { get; set; }
         public string City { get; set; }
         public string Provence { get; set; }
-
-        public Package Package { get; set; }
     }
 }

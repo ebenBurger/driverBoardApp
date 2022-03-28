@@ -21,8 +21,6 @@ namespace driverBoard.API.Models
         public string TellNumber { get; set; }
         public DateTime DateCreated { get; set; }
 
-        // relationship added- Navigation property
-        public Vehicle Vehicles { get; set; }
-        public AddressBook AddressBooks { get; set; }
+
     }
 }

@@ -16,8 +16,5 @@ namespace driverBoard.API.Models
         public bool IsAvailable { get; set; }
         public bool? IsActive { get; set; }
         public DateTime DateCreated { get; set; }
-
-        // Relationship setup
-        public Driver Driver { get; set; }
     }
 }

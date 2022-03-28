@@ -13,8 +13,5 @@ namespace driverBoard.API.Models
         public int Height { get; set; }
         public int Volume { get; set; }
         public bool IsComplete { get; set; }
-
-        public Destination Destination { get; set; }
-        public Vehicle Vehicle { get; set; }
     }
 }
