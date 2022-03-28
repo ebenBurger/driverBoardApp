@@ -14,8 +14,12 @@
                         <font-awesome-icon icon="fa-home" />
                         Vehicle
                     </router-link>
-                    <router-link exact-active-class="active" to="/contact">
+                    <router-link exact-active-class="active" to="/address">
                         <font-awesome-icon icon="fa-address-book" />
+                        Address
+                    </router-link>
+                    <router-link exact-active-class="active" to="/contact">
+                        <font-awesome-icon icon="fa-user-plus" />
                         Contacts
                     </router-link>
                 </b-navbar-nav>

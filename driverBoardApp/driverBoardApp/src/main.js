@@ -6,7 +6,7 @@ import VueMq from "vue-mq";
 import store from "@/store";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faAddressBook, faHome, faBuilding, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faHome, faBuilding, faPlus, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
@@ -41,7 +41,7 @@ Vue.filter('dateTimeFilter', function (value) {
 })
 
 //FA icons
-library.add( faHome, faAddressBook, faBuilding, faPlus )
+library.add( faHome, faAddressBook, faBuilding, faPlus, faUserPlus )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
