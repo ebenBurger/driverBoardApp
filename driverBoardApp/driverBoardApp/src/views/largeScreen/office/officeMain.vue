@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     data: () => ({
         officeTable: {
@@ -71,13 +73,13 @@ export default {
             tableColumns: [
                 {
                     label: 'Office',
-                    key: 'office',
+                    key: 'building',
                     sortable: true,
                     tdClass:'',
                 },
                 {
                     label: 'Address',
-                    key: 'address',
+                    key: 'addressLine1',
                     sortable: true,
                     tdClass:'',
                 },
@@ -99,6 +101,7 @@ export default {
     beforeCreate() {
     },
     created() {
+        this.officeRequest()
     },
     beforeMount() {
     },
@@ -109,7 +112,20 @@ export default {
     updated() {
     },
     methods: {
+        ...mapActions(['getAllOffice']),
+        
         openOffice() {},
+        officeRequest() {
+            this.officeTable.isLoading = true
+            
+            const request = []
+            this.$store.commit('setOfficeRequest', request)
+            this.getAllOffice()
+            .then((response) => {
+                this.officeTable.isLoading= false
+                this.officeTable.dataSource = response.data
+            })
+        },
         addOffice() {
             this.$router.push({path: '/addOffice'})
         },

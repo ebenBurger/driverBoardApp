@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     data: () => ({
         officeData: {
@@ -104,11 +106,24 @@ export default {
     updated() {
     },
     methods: {
+        ...mapActions(['createNewOffice']),
+        
         goBack() {
             this.$router.back()
         },
         
-        save() {},
+        save() {
+            this.$store.commit('setOfficeCreateRequest', this.officeData)
+            this.state = 'loading'
+            this.createNewOffice()
+            .then(() => {
+                this.goBack()
+            })
+            .catch((err) => {
+                this.state = 'show'
+                console.log('ERROR', err)
+            })
+        },
     },
     computed: {},
 }
