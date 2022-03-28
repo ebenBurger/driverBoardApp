@@ -27,6 +27,9 @@ namespace driverBoard.API.Managers
         {
             try
             {
+                office.DateCreated = Convert.ToDateTime(DateTime.Now.ToLocalTime()
+                    .ToString(System.Globalization.CultureInfo.InvariantCulture));
+                office.DateCreated = office.DateCreated;
                 _context.Offices.Add(office);
             }
             catch (Exception e)
