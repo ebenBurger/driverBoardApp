@@ -110,8 +110,9 @@ export default {
             .then(() => {
                 this.goBack()
             })
-            .catch(() => {
+            .catch((err) => {
                 this.state = 'show'
+                console.log('ERROR', err)
             })
         },
     },
