@@ -22,7 +22,7 @@ namespace driverBoard.API.Models
         public DateTime DateCreated { get; set; }
 
         // relationship added- Navigation property
-        public List<Vehicle> Vehicles { get; set; }
-        public List<PickUpLocation> PickUpLocations { get; set; }
+        public Vehicle Vehicles { get; set; }
+        public AddressBook AddressBooks { get; set; }
     }
 }

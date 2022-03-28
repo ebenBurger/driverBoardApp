@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace driverBoard.API.Models
@@ -17,9 +18,6 @@ namespace driverBoard.API.Models
         public DateTime DateCreated { get; set; }
 
         // Relationship setup
-        public int OfficeId { get; set; }
-        public Office Office { get; set; }
-        public int PickUpLocationId { get; set; }
-        public PickUpLocation PickUpLocation { get; set; }
+        public Driver Driver { get; set; }
     }
 }

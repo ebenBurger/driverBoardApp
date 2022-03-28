@@ -19,7 +19,6 @@ namespace driverBoard.API.Models
         public string City { get; set; }
         public string Provence { get; set; }
 
-        
-        public Destination Destination { get; set; }
+        public Package Package { get; set; }
     }
 }

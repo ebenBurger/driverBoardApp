@@ -20,7 +20,7 @@ namespace driverBoard.API.Controllers
         }
         
         // GET
-        [HttpGet("getAll")]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             try

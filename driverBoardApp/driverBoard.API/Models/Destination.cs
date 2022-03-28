@@ -1,23 +1,23 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace driverBoard.API.Models
 {
     public class Destination
     {
-        [ForeignKey("PickUpLocation")]
+        [Key]
         public int DestinationId { get; set; }
-        public DateTime DeliveryDate { get; set; }
-        public int Weight { get; set; }
-        public int Length { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public int Volume { get; set; }
-        public bool IsComplete { get; set; }
-
-        
-        public PickUpLocation PickUpLocation { get; set; }
-        
-        public AddressBook AddressBook { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Mobile { get; set; }
+        public string Landline { get; set; }
+        public string Email { get; set; }
+        public string Building { get; set; }
+        public string OfficePark { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public int PostalCode { get; set; }
+        public string City { get; set; }
+        public string Provence { get; set; }
     }
 }

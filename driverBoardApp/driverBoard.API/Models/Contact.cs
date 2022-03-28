@@ -20,6 +20,5 @@ namespace driverBoard.API.Models
         public string City { get; set; }
         public string Provence { get; set; }
 
-        public List<PickUpLocation> PickUpLocations { get; set; }
     }
 }

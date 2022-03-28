@@ -12,7 +12,6 @@ namespace driverBoard.API.Models
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Office> Offices { get; set; }
-        public DbSet<PickUpLocation> PickUpLocations { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
     }
 }

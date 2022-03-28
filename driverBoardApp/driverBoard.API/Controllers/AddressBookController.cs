@@ -17,7 +17,7 @@ namespace driverBoard.API.Controllers
             _addressBookManager = addressBookManager;
         }
         // GET
-        [HttpGet("getAll")]
+        [HttpGet("GetAll")]
         public IActionResult GetAllAddresses()
         {
             try

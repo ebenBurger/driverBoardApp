@@ -50,7 +50,6 @@ namespace driverBoard.API
             services.TryAddScoped<IDriverManager, DriverManager>();
             services.TryAddScoped<IOfficeManager, OfficeManager>();
             // services.TryAddScoped<>();
-            services.TryAddScoped<IPickUpLocationManager, PickUpLocationManager>();
             services.TryAddScoped<IVehicleManager, VehicleManager>();
             
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

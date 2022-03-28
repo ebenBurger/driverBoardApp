@@ -19,7 +19,7 @@ namespace driverBoard.API.Controllers
             _contactManager = contactManager;
         }
         // GET
-        [HttpGet("getAll")]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             try
