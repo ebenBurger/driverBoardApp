@@ -178,7 +178,7 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 const callConfig = {
                     method: 'get',
-                    url: state.baseUrl + 'Vehicle/get/' + state.selectedVehicle.id,
+                    url: state.baseUrl + 'Vehicle/get/' + state.selectedVehicle.vehicleId,
                     headers: {},
                 }
                 axios(callConfig)
