@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Managers
 {
@@ -19,7 +20,9 @@ namespace driverBoard.API.Managers
 
         public List<Office> GetAll()
         {
-            var office = _context.Offices.ToList();
+            var office = _context.Offices
+                .Include(a => a.Vehicles)
+                .ToList();
             return office;
         }
 

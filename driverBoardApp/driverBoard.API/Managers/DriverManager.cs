@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Managers
 {
@@ -20,7 +21,9 @@ namespace driverBoard.API.Managers
 
         public List<Driver> GetAll()
         {
-            var driver = _context.Drivers.ToList();
+            var driver = _context.Drivers
+                .Include(b => b.Vehicle)
+                .ToList();
             return driver;
         }
 

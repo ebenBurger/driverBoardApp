@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Managers
 {
@@ -20,7 +21,11 @@ namespace driverBoard.API.Managers
         }
         public List<Vehicle> GetAllVehicles()
         {
-            var vehicle = _context.Vehicles.Where(a => a.IsActive == true).ToList();
+            var vehicle = _context.Vehicles
+                .Where(a => a.IsActive == true)
+                .Include(a => a.Office)
+                .Include(b => b.Drivers)
+                .ToList();
             return vehicle;
         }
 
