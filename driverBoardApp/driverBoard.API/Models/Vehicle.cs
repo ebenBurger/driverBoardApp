@@ -6,7 +6,6 @@ namespace driverBoard.API.Models
 {
     public class Vehicle
     {
-        [ForeignKey("PickUpLocation")]
         public int VehicleId { get; set; }
         public string ModelVehicle { get; set; }
         public string MakeVehicle { get; set; }
@@ -16,5 +15,10 @@ namespace driverBoard.API.Models
         public bool IsAvailable { get; set; }
         public bool? IsActive { get; set; }
         public DateTime DateCreated { get; set; }
+        
+        public int OfficeId { get; set; }
+        public  Office Office { get; set; }
+
+        public ICollection<Driver> Drivers { get; set; }
     }
 }

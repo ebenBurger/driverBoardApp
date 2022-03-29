@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace driverBoard.API.Models
 {
@@ -21,6 +19,6 @@ namespace driverBoard.API.Models
         public string TellNumber { get; set; }
         public DateTime DateCreated { get; set; }
 
-
+        public ICollection<Vehicle> Vehicles { get; set; }
     }
 }

@@ -8,5 +8,9 @@ namespace driverBoard.API.Models
         public int DriverId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+
+        public int VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
+
     }
 }
