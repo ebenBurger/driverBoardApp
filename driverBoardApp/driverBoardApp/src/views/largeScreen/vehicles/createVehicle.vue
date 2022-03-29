@@ -12,22 +12,21 @@
                         <b-row>
                             <b-col>
                                 <label>Make</label>
-                                <b-form-input v-model="vehicleValues.make"></b-form-input>
+                                <b-form-input v-model="vehicleValues.makeVehicle"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col>
                                 <label>Model</label>
-                                <b-form-input v-model="vehicleValues.model"></b-form-input>
+                                <b-form-input v-model="vehicleValues.modelVehicle"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col>
                                 <label>Location</label>
-                                <b-form-select v-model="vehicleValues.location">
-                                    <b-form-select-option v-for="(item, index) in locations" :key="index" :value="item">{{item.name}}</b-form-select-option>
+                                <b-form-select v-model="selectedOffice">
+                                    <b-form-select-option v-for="(item, index) in locations" :key="index" :value="item">{{item.location}}</b-form-select-option>
                                 </b-form-select>
-<!--                                <b-form-input v-model="vehicleValues.location"></b-form-input>-->
                             </b-col>
                         </b-row>
                         <b-row>
@@ -37,7 +36,7 @@
                             </b-col>
                             <b-col>
                                 <label>Model Year</label>
-                                <b-form-input v-model="vehicleValues.modelYear"></b-form-input>
+                                <b-form-input v-model="vehicleValues.year"></b-form-input>
                             </b-col>
                         </b-row>
                         <hr class="mx-3">
@@ -66,20 +65,22 @@ import {mapActions} from "vuex";
 export default {
     data: () => ({
         vehicleValues: {
-            model: null,
-            make: null,
+            modelVehicle: null,
+            makeVehicle: null,
             location: null,
             odometer: null,
-            modelYear: null,
+            isActive: true,
+            isAvailable: true,
+            year: null,
+            officeId: null,
         },
-        locations: [
-            {id: 1, name: "Johannesburg"},
-            {id: 2, name: "Cape Town"},
-        ],
+        locations: [],
+        selectedOffice: [],
     }),
     beforeCreate() {
     },
     created() {
+        this.loadOffice()
     },
     beforeMount() {
     },
@@ -90,25 +91,29 @@ export default {
     updated() {
     },
     methods: {
-        ...mapActions(['createNewVehicle']),
+        ...mapActions(['createNewVehicle', "getAllOffice"]),
         
         goBack(){
             this.$router.back()
         },
         
+        loadOffice() {
+            this.getAllOffice()
+            .then(response => {
+                this.locations = response.data
+                console.log('OFFICE', this.locations)
+            })
+        },
+        
         save(){
-            const request = {
-                modelVehicle: this.vehicleValues.model,
-                makeVehicle: this.vehicleValues.make,
-                location: this.vehicleValues.location,
-                isActive: true,
-            }
-            
-            this.$store.commit('setVehicleCreateRequest', request)
+            this.vehicleValues.officeId = this.selectedOffice.officeId
+            this.vehicleValues.location = this.selectedOffice.location
+            this.$store.commit('setVehicleCreateRequest', this.vehicleValues)
             this.state = 'loading'
             this.createNewVehicle()
             .then(() => {
                 this.goBack()
+                console.log("SELECTED", this.selectedOffice)
             })
             .catch((err) => {
                 this.state = 'show'
