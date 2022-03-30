@@ -20,5 +20,6 @@ namespace driverBoard.API.Models
         public DateTime DateCreated { get; set; }
 
         public ICollection<Vehicle> Vehicles { get; set; }
+        public ICollection<Driver> Drivers { get; set; }
     }
 }
