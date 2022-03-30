@@ -12,6 +12,7 @@ export default new Vuex.Store({
         selectedVehicle: null,
         
         //requests and initial states
+        //address
         addressBookRequest: null,
         addressBookCreateRequest: null,
         
@@ -22,6 +23,11 @@ export default new Vuex.Store({
         //vehicle
         vehicleRequest: null,
         vehicleCreateRequest: null,
+        
+        //driver
+        driverRequest: null,
+        createDriverRequest: null
+        
     },
     
     mutations: {
@@ -43,6 +49,9 @@ export default new Vuex.Store({
         setVehicleCreateRequest: (state, payload) => {state.vehicleCreateRequest = payload},
         setSelectedVehicle: (state, payload) => {state.selectedVehicle = payload},
         
+        //driver
+        setDriverRequest: (state, payload) => {state.driverRequest = payload},
+        setCreateDriverRequest: (state, payload) => {state.createDriverRequest = payload},
     },
     actions: {
         //address book
@@ -214,7 +223,48 @@ export default new Vuex.Store({
             })
         },
         
-        //Office
+        //Driver
+        getAllDriver: ({state}) => {
+            return  new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Driver/GetAll',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.driverRequest = response.data
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+        createNewDriver: ({state}) => {
+            let payload = state.createDriverRequest
+
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Driver/Save',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload
+                }
+
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
     },
     modules: {}
 })

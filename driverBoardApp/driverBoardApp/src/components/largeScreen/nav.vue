@@ -14,6 +14,11 @@
                         <font-awesome-icon icon="fa-home" />
                         Vehicle
                     </router-link>
+                    <router-link exact-active-class="active" to="/driver">
+                        <font-awesome-icon icon="fa-home" />
+                        Driver
+                    </router-link>
+                    
                     <router-link exact-active-class="active" to="/address">
                         <font-awesome-icon icon="fa-address-book" />
                         Address

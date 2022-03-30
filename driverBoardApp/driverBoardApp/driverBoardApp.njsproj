@@ -41,6 +41,8 @@
     <Content Include="src\style.scss" />
     <Content Include="src\views\largeScreen\contact\contact.vue" />
     <Content Include="src\views\largeScreen\contact\createContact.vue" />
+    <Content Include="src\views\largeScreen\driver\createDriver.vue" />
+    <Content Include="src\views\largeScreen\driver\driverMain.vue" />
     <Content Include="src\views\largeScreen\layout.vue" />
     <Content Include="src\views\largeScreen\office\createOffice.vue" />
     <Content Include="src\views\largeScreen\office\officeMain.vue" />
@@ -60,6 +62,7 @@
     <Folder Include="src\views\largeScreen\" />
     <Folder Include="src\views\largeScreen\address" />
     <Folder Include="src\views\largeScreen\contact\" />
+    <Folder Include="src\views\largeScreen\driver\" />
     <Folder Include="src\views\largeScreen\office\" />
     <Folder Include="src\views\largeScreen\vehicles\" />
   </ItemGroup>

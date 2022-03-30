@@ -1,4 +1,5 @@
 import layout from "@/views/largeScreen/layout";
+
 //vehicle
 import main from "@/views/largeScreen/vehicles/main";
 import createVehicle from "@/views/largeScreen/vehicles/createVehicle";
@@ -7,6 +8,10 @@ import editVehicle from "@/views/largeScreen/vehicles/editVehicle";
 //offices
 import officeMain from "@/views/largeScreen/office/officeMain";
 import createOffice from "@/views/largeScreen/office/createOffice";
+
+//driver
+import driverMain from "@/views/largeScreen/driver/driverMain";
+import createDriver from "@/views/largeScreen/driver/createDriver";
 
 //contact
 import contact from "@/views/largeScreen/contact/contact";
@@ -33,6 +38,11 @@ export default [
                 name: 'officeMain',
                 component: officeMain,
             },
+            {
+                path: '/driver',
+                name: 'driverMain',
+                component: driverMain,
+            },
         ]
     },
     // additional vehicle pages
@@ -52,6 +62,13 @@ export default [
         path: '/addOffice',
         name: 'addOffice',
         component: createOffice,
+    },
+
+    //additional Driver pages
+    {
+        path: '/addDriver',
+        name: 'addDriver',
+        component: createDriver,
     },
 
     //additional Contact pages
