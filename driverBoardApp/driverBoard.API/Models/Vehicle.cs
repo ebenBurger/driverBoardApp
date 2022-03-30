@@ -15,10 +15,17 @@ namespace driverBoard.API.Models
         public bool IsAvailable { get; set; }
         public bool? IsActive { get; set; }
         public DateTime DateCreated { get; set; }
+        public bool CodeA { get; set; }
+        public bool CodeA1 { get; set; }
+        public bool CodeB { get; set; }
+        public bool CodeC1 { get; set; }
+        public bool CodeC { get; set; }
+        public bool CodeEB { get; set; }
+        public bool CodeEC1 { get; set; }
+        public bool CodeEC { get; set; }
         
         public int OfficeId { get; set; }
         public  Office Office { get; set; }
-
         public ICollection<Driver> Drivers { get; set; }
     }
 }
