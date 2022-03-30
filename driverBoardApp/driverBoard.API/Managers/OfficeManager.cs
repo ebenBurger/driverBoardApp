@@ -22,6 +22,7 @@ namespace driverBoard.API.Managers
         {
             var office = _context.Offices
                 .Include(a => a.Vehicles)
+                .Include(b => b.Drivers)
                 .ToList();
             return office;
         }
