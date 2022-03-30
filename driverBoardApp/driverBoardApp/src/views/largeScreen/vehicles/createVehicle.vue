@@ -101,7 +101,6 @@ export default {
             this.getAllOffice()
             .then(response => {
                 this.locations = response.data
-                console.log('OFFICE', this.locations)
             })
         },
         
@@ -113,7 +112,6 @@ export default {
             this.createNewVehicle()
             .then(() => {
                 this.goBack()
-                console.log("SELECTED", this.selectedOffice)
             })
             .catch((err) => {
                 this.state = 'show'
