@@ -27,6 +27,9 @@ namespace driverBoard.API.Managers
         {
             try
             {
+                contact.DateCreated = Convert.ToDateTime(DateTime.Now.ToLocalTime()
+                    .ToString(System.Globalization.CultureInfo.InvariantCulture));
+                contact.DateCreated = contact.DateCreated;
                 _context.Contacts.Add(contact);
             }
             catch (Exception e)
