@@ -13,6 +13,7 @@ namespace driverBoard.API.Models
         public string Mobile { get; set; }
         public string Landline { get; set; }
         public string Email { get; set; }
+        public string CompanyName { get; set; }
         public string Building { get; set; }
         public string OfficePark { get; set; }
         public string AddressLine1 { get; set; }

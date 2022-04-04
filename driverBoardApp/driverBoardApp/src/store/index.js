@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         baseUrl: '',
         
-        //selected
+        //selected- view data.
         selectedVehicle: null,
         
         //requests and initial states
@@ -29,6 +29,9 @@ export default new Vuex.Store({
         driverRequest: null,
         createDriverRequest: null,
         
+        //contacts
+        contactRequest: null,
+        createContactRequest: null,
     },
     
     mutations: {
@@ -53,6 +56,10 @@ export default new Vuex.Store({
         //driver
         setDriverRequest: (state, payload) => {state.driverRequest = payload},
         setCreateDriverRequest: (state, payload) => {state.createDriverRequest = payload},
+
+        //contacts
+        setContactRequest: (state, payload) => {state.contactRequest = payload},
+        setCreateContactRequest: (state, payload) => {state.createContactRequest = payload},
         
     },
     actions: {
@@ -252,6 +259,49 @@ export default new Vuex.Store({
                 const callConfig = {
                     method: 'post',
                     url: state.baseUrl + 'Driver/Save',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload
+                }
+
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+
+        //Contacts
+        getAllContact: ({state}) => {
+            return  new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Contact/GetAll',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.contactRequest = response.data
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+        createNewContact: ({state}) => {
+            let payload = state.createContactRequest
+
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Contact/Save',
                     headers: {
                         'Content-Type': 'application/json'
                     },

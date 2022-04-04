@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     data: () => ({
         contact:{
@@ -79,20 +81,20 @@ export default {
             isLoading: false,
             tableColumns: [
                 {
-                    label: 'Office',
-                    key: 'office',
+                    label: 'Name',
+                    key: 'name',
                     sortable: true,
                     tdClass:'',
                 },
                 {
-                    label: 'Address',
-                    key: 'address',
+                    label: 'Surname',
+                    key: 'surname',
                     sortable: true,
                     tdClass:'',
                 },
                 {
-                    label: 'Location',
-                    key: 'location',
+                    label: 'Company Name',
+                    key: 'companyName',
                     sortable: true,
                     tdClass:'',
                 },
@@ -108,6 +110,7 @@ export default {
     beforeCreate() {
     },
     created() {
+        this.contactRequest()
     },
     beforeMount() {
     },
@@ -118,6 +121,20 @@ export default {
     updated() {
     },
     methods: {
+        ...mapActions(["getAllContact"]),
+        
+        contactRequest() {
+            this.contactTable.isLoading = true
+            
+            const request = []
+            this.$store.commit('setContactRequest', request)
+            this.getAllContact()
+            .then((response) => {
+                this.contactTable.isLoading = false
+                this.contactTable.dataSource = response.data
+            })
+        },
+        
         addContact() {
             this.$router.push({path: '/addContact'})
         },

@@ -39,6 +39,12 @@
                         <hr class="mx-3">
                         <label class="text-primary font-weight-bold mb-4">Company Details</label>
                         <b-row>
+                            <b-col cols="6">
+                                <label>Company Name</label>
+                                <b-form-input v-model="contactData.companyName"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row>
                             <b-col>
                                 <label>Building</label>
                                 <b-form-input v-model="contactData.building"></b-form-input>
@@ -96,6 +102,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     data: () => ({
         contactData: {
@@ -104,6 +112,7 @@ export default {
             mobile: null,
             landline: null,
             email: null,
+            companyName: null,
             building: null,
             officePark: null,
             addressLine1: null,
@@ -126,11 +135,24 @@ export default {
     updated() {
     },
     methods: {
+        ...mapActions(["createNewContact"]),
+        
         goBack() {
             this.$router.back()
         },
         
-        save() {},
+        save() {
+            this.$store.commit('setCreateContactRequest', this.contactData)
+            this.state = 'loading'
+            this.createNewContact()
+            .then(() => {
+                this.goBack()
+            })
+            .catch((err) => {
+                this.state = 'show'
+                console.log("ERROR", err)
+            })
+        },
     },
     computed: {},
 }
