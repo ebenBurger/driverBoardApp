@@ -12,5 +12,7 @@ namespace driverBoard.API.Models
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+
+        public DbSet<License> Licenses { get; set; }
     }
 }
