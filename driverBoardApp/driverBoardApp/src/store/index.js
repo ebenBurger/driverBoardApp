@@ -12,6 +12,7 @@ export default new Vuex.Store({
         selectedVehicle: null,
         
         //requests and initial states
+        
         //address
         addressBookRequest: null,
         addressBookCreateRequest: null,
@@ -26,7 +27,7 @@ export default new Vuex.Store({
         
         //driver
         driverRequest: null,
-        createDriverRequest: null
+        createDriverRequest: null,
         
     },
     
@@ -52,6 +53,7 @@ export default new Vuex.Store({
         //driver
         setDriverRequest: (state, payload) => {state.driverRequest = payload},
         setCreateDriverRequest: (state, payload) => {state.createDriverRequest = payload},
+        
     },
     actions: {
         //address book

@@ -18,6 +18,6 @@ namespace driverBoard.API.Models
         
         public int OfficeId { get; set; }
         public  Office Office { get; set; }
-        public ICollection<Driver> Drivers { get; set; }
+        
     }
 }

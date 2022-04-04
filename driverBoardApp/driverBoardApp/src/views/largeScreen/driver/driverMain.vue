@@ -86,6 +86,12 @@ export default {
                     tdClass:'',
                 },
                 {
+                    label: 'Location',
+                    key: 'location',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
                     label: '',
                     key: 'actions',
                     sortable: false,

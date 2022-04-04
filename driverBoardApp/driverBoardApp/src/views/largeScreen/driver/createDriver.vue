@@ -29,22 +29,80 @@
                                 </b-form-select>
                             </b-col>
                         </b-row>
+                        <hr class="mx-3" />
                         <b-row>
                             <b-col>
-                                <label>Vehicle</label>
-<!--                                <b-form-group v-slot="{ariaDescribedby}">-->
-<!--                                    <b-form-checkbox-group-->
-<!--                                        id="checkBox"-->
-<!--                                        v-model="driverData.vehicle"-->
-<!--                                        :aria-describedby="ariaDescribedby"-->
-<!--                                        name="vehicleList">-->
-<!--                                    </b-form-checkbox-group>-->
-<!--                                    <b-form-checkbox v-for="(value, index) in vehicles" :key='index'>{{index}} - {{value.makeVehicle}}</b-form-checkbox>-->
-<!--                                </b-form-group>-->
-<!--                                <b-form-select v-model="selectedOffice">-->
-<!--                                    <b-form-select-option v-for="(item, index) in locations" :key="index" :value="item">{{item.location}}</b-form-select-option>-->
-<!--                                </b-form-select>-->
+                                <label>License</label>
                             </b-col>
+                        </b-row>
+                        <b-row class="justify-content-center">
+                            <b-row>
+                                <b-col>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeA"
+                                        :variant="ACode"
+                                        :pressed.sync="driverData.codeA"
+                                        @click="toggleButtonCodeA"
+                                    >Code A: {{driverData.codeA ? 'Yes' : 'No'}}</b-button>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeA1"
+                                        :variant="A1Code"
+                                        :pressed.sync="driverData.codeA1"
+                                        @click="toggleButtonCodeA1"
+                                        class="ml-2"
+                                    >Code A1: {{driverData.codeA1 ? 'Yes' : 'No'}}</b-button>
+                                </b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeB"
+                                        :variant="BCode"
+                                        :pressed.sync="driverData.codeB"
+                                        @click="toggleButtonCodeB"
+                                        class="ml-2"
+                                    >Code B: {{driverData.codeB ? 'Yes' : 'No'}}</b-button>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeC"
+                                        :variant="CCode"
+                                        :pressed.sync="driverData.codeC"
+                                        @click="toggleButtonCodeC"
+                                        class="ml-2"
+                                    >Code C: {{driverData.codeC ? 'Yes' : 'No'}}</b-button>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeEB"
+                                        :variant="EBCode"
+                                        :pressed.sync="driverData.codeEB"
+                                        @click="toggleButtonCodeEB"
+                                        class="ml-2"
+                                    >Code EB: {{driverData.codeEB ? 'Yes' : 'No'}}</b-button>
+                                </b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeEC1"
+                                        :variant="EC1Code"
+                                        :pressed.sync="driverData.codeEC1"
+                                        @click="toggleButtonCodeEC1"
+                                        class="ml-2"
+                                    >Code EC1: {{driverData.codeEC1 ? 'Yes' : 'No'}}</b-button>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeEC"
+                                        :variant="ECCode"
+                                        :pressed.sync="driverData.codeEC"
+                                        @click="toggleButtonCodeEC"
+                                        class="ml-2"
+                                    >Code EC: {{driverData.codeEC ? 'Yes' : 'No'}}</b-button>
+                                </b-col>
+                            </b-row>
                         </b-row>
                         <hr class="mx-3">
                         <b-row>
@@ -75,17 +133,29 @@ export default {
             name: null,
             surname: null,
             location: null,
-            vehicle: {},
+            codeA: false,
+            codeA1: false,
+            codeB: false,
+            codeC: false,
+            codeEB: false,
+            codeEC1: false,
+            codeEC: false,
+            officeId: null,
         },
-        vehicles: [],
         locations: [],
         selectedOffice: [],
-        selectedVehicle: [],
+        isCodeA: false,
+        isCodeA1: false,
+        isCodeB: false,
+        isCodeC: false,
+        isCodeEB: false,
+        isCodeEC1: false,
+        isCodeEC: false,
+        
     }),
     beforeCreate() {
     },
     created() {
-        this.listVehicle()
         this.loadOffice()
     },
     beforeMount() {
@@ -94,31 +164,22 @@ export default {
     },
     beforeUpdate() {
     },
-    updated() {
-        console.log("SELETED", this.selectedVehicle)
-    },
+    updated() {},
     methods: {
-        ...mapActions(["createNewDriver", "getAllVehiclesRequest", "getAllOffice"]),
+        ...mapActions(["createNewDriver", "getAllOffice" ]),
         goBack() {
             this.$router.back()
-        },
-        listVehicle() {
-            this.getAllVehiclesRequest()
-            .then((response) => {
-                this.vehicles = response.data
-                console.log('VEHICLES DATA', this.vehicles)
-            })
         },
         loadOffice() {
             this.getAllOffice()
                 .then(response => {
                     this.locations = response.data
-                    console.log('OFFICE', this.locations)
                 })
         },
+        
         save() {
             this.driverData.location = this.selectedOffice.location
-            this.driverData.vehicle = this.selectedVehicle.vehicleId
+            this.driverData.officeId = this.selectedOffice.officeId
             this.$store.commit('setCreateDriverRequest', this.driverData)
             this.createNewDriver()
             .then(() => {
@@ -127,11 +188,68 @@ export default {
             })
             
         },
+        
+        //toggle license classes
+        toggleButtonCodeA() {
+            this.isCodeA = !this.isCodeA
+        },
+        toggleButtonCodeA1() {
+            this.isCodeA1 = !this.isCodeA1
+        },
+        toggleButtonCodeB() {
+            this.isCodeB = !this.isCodeB
+        },
+        toggleButtonCodeC() {
+            this.isCodeC = !this.isCodeC
+        },
+        toggleButtonCodeEB() {
+            this.isCodeEB = !this.isCodeEB
+        },
+        toggleButtonCodeEC1() {
+            this.isCodeEC1 = !this.isCodeEC1
+        },
+        toggleButtonCodeEC() {
+            this.isCodeEC = !this.isCodeEC
+        },
     },
-    computed: {},
+    computed: {
+        ACode() {
+            return this.isCodeA? "primary" : "light"
+        },
+        A1Code() {
+            return this.isCodeA1? "primary" : "light"
+        },
+        BCode() {
+            return this.isCodeB? "primary" : "light"
+        },
+        CCode() {
+            return this.isCodeC? "primary" : "light"
+        },
+        EBCode() {
+            return this.isCodeEB? "primary" : "light"
+        },
+        EC1Code() {
+            return this.isCodeEC1? "primary" : "light"
+        },
+        ECCode() {
+            return this.isCodeEC? "primary" : "light"
+        },
+    },
 }
 </script>
 
 <style scoped>
 
+.white {
+    background-color: white;
+    width: 200px;
+    height: 50px;
+    color: black;
+}
+.blue {
+    width: 200px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+}
 </style>

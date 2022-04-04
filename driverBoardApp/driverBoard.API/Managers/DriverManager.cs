@@ -22,7 +22,7 @@ namespace driverBoard.API.Managers
         public List<Driver> GetAll()
         {
             var driver = _context.Drivers
-                .Include(b => b.License)
+                .Include(b => b.Office)
                 .ToList();
             return driver;
         }
@@ -31,6 +31,9 @@ namespace driverBoard.API.Managers
         {
             try
             {
+                driver.DateCreated = Convert.ToDateTime(DateTime.Now.ToLocalTime()
+                    .ToString(System.Globalization.CultureInfo.InvariantCulture));
+                driver.DateCreated = driver.DateCreated;
                 _context.Drivers.Add(driver);
             }
             catch (Exception e)
