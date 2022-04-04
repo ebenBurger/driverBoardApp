@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace driverBoard.API.Models
@@ -19,5 +20,6 @@ namespace driverBoard.API.Models
         public int PostalCode { get; set; }
         public string City { get; set; }
         public string Provence { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }
