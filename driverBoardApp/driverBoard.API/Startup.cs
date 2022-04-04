@@ -49,7 +49,6 @@ namespace driverBoard.API
             services.TryAddScoped<IDestinationManager, DestinaitionManager>();
             services.TryAddScoped<IDriverManager, DriverManager>();
             services.TryAddScoped<IOfficeManager, OfficeManager>();
-            services.TryAddScoped<ILicenseManager, LicenseManager>();
             // services.TryAddScoped<>();
             services.TryAddScoped<IVehicleManager, VehicleManager>();
             
