@@ -22,7 +22,7 @@ namespace driverBoard.API.Managers
         public List<Driver> GetAll()
         {
             var driver = _context.Drivers
-                .Include(b => b.Vehicle)
+                .Include(b => b.License)
                 .ToList();
             return driver;
         }
