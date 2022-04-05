@@ -24,9 +24,12 @@
                         <b-row>
                             <b-col>
                                 <label>Location</label>
-                                <b-form-select v-model="selectedOffice">
-                                    <b-form-select-option v-for="(item, index) in locations" :key="index" :value="item">{{item.location}}</b-form-select-option>
-                                </b-form-select>
+                                <b-input-group-append>
+                                    <b-form-input disabled v-model="vehicleValues.location"></b-form-input>
+                                    <b-input-group-append>
+                                        <b-button text="Button" variant="outline-primary" @click="openSearchModal" >Search</b-button>
+                                    </b-input-group-append>
+                                </b-input-group-append>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -56,6 +59,60 @@
                 </b-card>
             </b-col>
         </b-row>
+
+        <b-modal id="officeSearchModal" hide-footer size="xl" title="Atrax Office Search" @close="hideSearchModal">
+            <!--            <label>Office Search</label>-->
+            <div class="d-flex w-100 mb-4">
+                <!--                <div class="w-50 h-auto">-->
+                <!--                    <b-form-input v-model="frontHarvestSearch.front" @keyup="filterFronts"></b-form-input>-->
+                <!--                    <b-form-input ></b-form-input>-->
+                <!--                </div>-->
+                <!--                <div class="w-50 h-auto">-->
+                <!--                    <div class="d-flex justify-content-end ">-->
+                <!--                        <b-button variant="outline-danger" class="mr-2">Clear</b-button>-->
+                <!--                        <b-button variant="outline-primary" class="mr-2" >Search</b-button>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+            <div>
+                <b-table striped hover
+                         :items="officeTable.dataSource"
+                         :fields="officeTable.tableColumns"
+                         :busy="officeTable.isLoading"
+                         @row-clicked="addOffice"
+                         :per-page="officeTable.resultsPerPage"
+                         id="stockTable"
+                         :current-page="officeTable.currentPage">
+
+                    <template #table-busy>
+                        <div class="text-center my-2">
+                            <b-spinner style="width: 3rem; height: 3rem;"></b-spinner>
+                        </div>
+                    </template>
+
+                    <template #cell(actions)="row">
+                        <b-row align-v="center" align-h="end">
+                            <b-button size="sm" class="btn-icon" @click="addOffice(row.item)">
+                                <b-icon-chevron-right></b-icon-chevron-right>
+                            </b-button>
+                        </b-row>
+                    </template>
+
+                </b-table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <b-pagination
+                    v-model="officeTable.currentPage"
+                    :total-rows="rows"
+                    :per-page="officeTable.resultsPerPage"
+                    aria-controls="stockTable"
+                ></b-pagination>
+            </div>
+            <div class="d-flex justify-content-end w-100">
+                <b-button variant="outline-danger" class="mr-2" @click="hideSearchModal">Cancel</b-button>
+            </div>
+        </b-modal>
+        
     </div>
 </template>
 
@@ -67,15 +124,45 @@ export default {
         vehicleValues: {
             modelVehicle: null,
             makeVehicle: null,
-            location: null,
             odometer: null,
+            year: null,
             isActive: true,
             isAvailable: true,
-            year: null,
             officeId: null,
+            location: null,
         },
-        locations: [],
-        selectedOffice: [],
+        officeTable: {
+            resultsPerPage: 10,
+            currentPage: 1,
+            dataSource: [],
+            isLoading: false,
+            tableColumns: [
+                {
+                    label: 'Office',
+                    key: 'building',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: 'Address',
+                    key: 'addressLine1',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: 'Location',
+                    key: 'location',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: '',
+                    key: 'actions',
+                    sortable: false,
+                    tdClass: ''
+                },
+            ]
+        },
     }),
     beforeCreate() {
     },
@@ -96,17 +183,28 @@ export default {
         goBack(){
             this.$router.back()
         },
-        
+
         loadOffice() {
             this.getAllOffice()
-            .then(response => {
-                this.locations = response.data
-            })
+                .then(response => {
+                    this.officeTable.dataSource = response.data
+                })
+        },
+
+        openSearchModal() {
+            this.$bvModal.show('officeSearchModal')
+        },
+        hideSearchModal() {
+            this.$bvModal.hide('officeSearchModal')
+        },
+        addOffice(rowItem) {
+            this.hideSearchModal()
+            this.vehicleValues.location = rowItem.location
+            this.vehicleValues.officeId = rowItem.officeId
+            console.log('ROW ITEM', rowItem)
         },
         
         save(){
-            this.vehicleValues.officeId = this.selectedOffice.officeId
-            this.vehicleValues.location = this.selectedOffice.location
             this.$store.commit('setVehicleCreateRequest', this.vehicleValues)
             this.state = 'loading'
             this.createNewVehicle()
@@ -119,7 +217,11 @@ export default {
             })
         },
     },
-    computed: {},
+    computed: {
+        rows() {
+            return this.officeTable.dataSource.length
+        },
+    },
 }
 </script>
 
