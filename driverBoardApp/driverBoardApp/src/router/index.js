@@ -8,6 +8,7 @@ import editVehicle from "@/views/largeScreen/vehicles/editVehicle";
 //offices
 import officeMain from "@/views/largeScreen/office/officeMain";
 import createOffice from "@/views/largeScreen/office/createOffice";
+import editOffice from "@/views/largeScreen/office/editOffice";
 
 //driver
 import driverMain from "@/views/largeScreen/driver/driverMain";
@@ -62,6 +63,11 @@ export default [
         path: '/addOffice',
         name: 'addOffice',
         component: createOffice,
+    },
+    {
+        path: '/editOffice',
+        name: 'editOffice',
+        component: editOffice,
     },
 
     //additional Driver pages

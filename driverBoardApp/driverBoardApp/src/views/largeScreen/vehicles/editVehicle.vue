@@ -194,8 +194,6 @@ export default {
             this.$router.back()
         },
         
-        save() {},
-        
         getSelectedVehicle() {
             if (this.$store.state.selectedVehicle == null) {
                 this.$router.push({path: '/'})
@@ -203,24 +201,12 @@ export default {
             this.getVehicleDetails()
             .then((response) => {
                 this.$store.commit('setSelectedVehicle', response.data)
-                console.log("DATA", response.data)
             })
         },
         
         updateVehicleDetails() {
-            console.log("VEHICLE UPDATED", this.selectedVehicle)
             
-            const vehicleDetailUpdated = {}
-            vehicleDetailUpdated.VehicleId = this.selectedVehicle.vehicleId
-            vehicleDetailUpdated.modelVehicle = this.selectedVehicle.modelVehicle
-            vehicleDetailUpdated.makeVehicle = this.selectedVehicle.makeVehicle
-            vehicleDetailUpdated.location = this.selectedVehicle.location
-            vehicleDetailUpdated.officeId = this.selectedVehicle.officeId
-            vehicleDetailUpdated.odometer = this.selectedVehicle.odometer
-            vehicleDetailUpdated.year = this.selectedVehicle.year
-            vehicleDetailUpdated.isActive = true
-            
-            this.$store.commit('setSelectedVehicle', vehicleDetailUpdated)
+            this.$store.commit('setSelectedVehicle', this.selectedVehicle)
             this.updateVehicle()
             .then(() => {
                 this.$router.back()
@@ -244,16 +230,8 @@ export default {
             this.$bvModal.hide('vehicleDeleteModal')
         },
         removeVehicle() {
-            console.log("VEHICLE UPDATED", this.selectedVehicle)
-
-            const vehicleDetailUpdated = {}
-            vehicleDetailUpdated.vehicleId = this.selectedVehicle.vehicleId
-            vehicleDetailUpdated.modelVehicle = this.selectedVehicle.modelVehicle
-            vehicleDetailUpdated.makeVehicle = this.selectedVehicle.makeVehicle
-            vehicleDetailUpdated.location = this.selectedVehicle.location
-            vehicleDetailUpdated.isActive = false
-
-            this.$store.commit('setSelectedVehicle', vehicleDetailUpdated)
+            this.selectedVehicle.isActive = false
+            this.$store.commit('setSelectedVehicle', this.selectedVehicle)
             this.updateVehicle()
                 .then(() => {
                     this.$router.back()
@@ -269,7 +247,6 @@ export default {
         hideSearchModal() {
             this.$bvModal.hide('officeSearchModal')
         },
-        
         addOffice(rowItem) {
             this.hideSearchModal()
             this.selectedVehicle.location = rowItem.location

@@ -21,11 +21,11 @@
                         </b-row>
                         <b-row>
                             <b-col>
-                                <label>Address Line 1</label>
+                                <label>Address</label>
                                 <b-form-input v-model="officeData.addressLine1"></b-form-input>
                             </b-col>
                             <b-col>
-                                <label>Address Line 2</label>
+                                <label>Address</label>
                                 <b-form-input v-model="officeData.addressLine2"></b-form-input>
                             </b-col>
                         </b-row>
@@ -91,6 +91,7 @@ export default {
             provence: null,
             location: null,
             tellNumber: null,
+            isActive: true,
         },
     }),
     beforeCreate() {

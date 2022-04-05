@@ -10,6 +10,7 @@ export default new Vuex.Store({
         
         //selected- view data.
         selectedVehicle: null,
+        selectedOffice: null,
         
         //requests and initial states
         
@@ -47,6 +48,7 @@ export default new Vuex.Store({
         //office
         setOfficeRequest: (state, payload) => {state.officeRequest = payload},
         setOfficeCreateRequest: (state, payload) => {state.officeCreateRequest = payload},
+        setSelectedOffice: (state, payload) => {state.selectedOffice = payload},
         
         //vehicle
         setVehicleRequest: (state, payload) => {state.vehicleRequest = payload},
@@ -148,6 +150,23 @@ export default new Vuex.Store({
                     })
             })
         },
+        getOfficeDetails: ({state}) => {
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Office/Get/' + state.selectedOffice.officeId,
+                    headers: {},
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.setSelectedOffice = response.data
+                        resolve(response)
+                    })
+                    .catch( err => {
+                        reject(err)
+                    })
+            })
+        },
         
         //vehicles
         getAllVehiclesRequest: ({state}) => {
@@ -201,7 +220,7 @@ export default new Vuex.Store({
                 }
                 axios(callConfig)
                     .then(response => {
-                        state.vehicle = response.data
+                        state.setSelectedVehicle = response.data
                         resolve(response)
                     })
                     .catch( err => {
