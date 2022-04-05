@@ -59,10 +59,6 @@
                                         @click="toggleButtonCodeA1"
                                         class="ml-2"
                                     >Code A1: {{selectedDriver.codeA1 ? 'Yes' : 'No'}}</b-button>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col>
                                     <b-button
                                         pill
                                         v-model="selectedDriver.codeB"
@@ -71,6 +67,18 @@
                                         @click="toggleButtonCodeB"
                                         class="ml-2"
                                     >Code B: {{selectedDriver.codeB ? 'Yes' : 'No'}}</b-button>
+                                </b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>
+                                    <b-button
+                                        pill
+                                        v-model="selectedDriver.codeC1"
+                                        :variant="C1Code"
+                                        :pressed.sync="selectedDriver.codeC1"
+                                        @click="toggleButtonCodeC1"
+                                        class="ml-2"
+                                    >Code C1: {{selectedDriver.codeC1 ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
                                         v-model="selectedDriver.codeC"
@@ -240,6 +248,7 @@ export default {
         isCodeA1: false,
         isCodeB: false,
         isCodeC: false,
+        isCodeC1: false,
         isCodeEB: false,
         isCodeEC1: false,
         isCodeEC: false,
@@ -275,6 +284,7 @@ export default {
                 this.isCodeA1 = this.selectedDriver.codeA1
                 this.isCodeB = this.selectedDriver.codeB
                 this.isCodeC = this.selectedDriver.codeC
+                this.isCodeC1 = this.selectedDriver.codeC1
                 this.isCodeEB = this.selectedDriver.codeEB
                 this.isCodeEC1 = this.selectedDriver.codeEC1
                 this.isCodeEC = this.selectedDriver.codeEC
@@ -342,6 +352,9 @@ export default {
         toggleButtonCodeC() {
             this.isCodeC = !this.isCodeC
         },
+        toggleButtonCodeC1() {
+            this.isCodeC1 = !this.isCodeC1
+        },
         toggleButtonCodeEB() {
             this.isCodeEB = !this.isCodeEB
         },
@@ -368,6 +381,9 @@ export default {
         },
         CCode() {
             return this.isCodeC ? "primary" : "light"
+        },
+        C1Code() {
+            return this.isCodeC1 ? "primary" : "light"
         },
         EBCode() {
             return this.isCodeEB ? "primary" : "light"

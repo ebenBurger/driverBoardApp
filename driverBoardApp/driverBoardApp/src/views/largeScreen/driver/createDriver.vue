@@ -56,10 +56,6 @@
                                         @click="toggleButtonCodeA1"
                                         class="ml-2"
                                     >Code A1: {{driverData.codeA1 ? 'Yes' : 'No'}}</b-button>
-                                </b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col>
                                     <b-button
                                         pill
                                         v-model="driverData.codeB"
@@ -68,6 +64,18 @@
                                         @click="toggleButtonCodeB"
                                         class="ml-2"
                                     >Code B: {{driverData.codeB ? 'Yes' : 'No'}}</b-button>
+                                </b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>
+                                    <b-button
+                                        pill
+                                        v-model="driverData.codeC1"
+                                        :variant="C1Code"
+                                        :pressed.sync="driverData.codeC1"
+                                        @click="toggleButtonCodeC1"
+                                        class="ml-2"
+                                    >Code C1: {{driverData.codeC1 ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
                                         v-model="driverData.codeC"
@@ -194,6 +202,7 @@ export default {
             codeA1: false,
             codeB: false,
             codeC: false,
+            codeC1: false,
             codeEB: false,
             codeEC1: false,
             codeEC: false,
@@ -235,6 +244,7 @@ export default {
         isCodeA1: false,
         isCodeB: false,
         isCodeC: false,
+        isCodeC1: false,
         isCodeEB: false,
         isCodeEC1: false,
         isCodeEC: false,
@@ -302,6 +312,9 @@ export default {
         toggleButtonCodeC() {
             this.isCodeC = !this.isCodeC
         },
+        toggleButtonCodeC1() {
+            this.isCodeC1 = !this.isCodeC1
+        },
         toggleButtonCodeEB() {
             this.isCodeEB = !this.isCodeEB
         },
@@ -324,6 +337,9 @@ export default {
         },
         CCode() {
             return this.isCodeC? "primary" : "light"
+        },
+        C1Code() {
+            return this.isCodeC1? "primary" : "light"
         },
         EBCode() {
             return this.isCodeEB? "primary" : "light"
