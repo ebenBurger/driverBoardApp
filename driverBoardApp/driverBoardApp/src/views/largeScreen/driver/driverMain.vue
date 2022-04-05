@@ -87,7 +87,7 @@ export default {
                 },
                 {
                     label: 'Location',
-                    key: 'location',
+                    key: 'office.location',
                     sortable: true,
                     tdClass:'',
                 },
@@ -131,6 +131,7 @@ export default {
             .then((response) => {
                 this.driverTable.isLoading = false
                 this.driverTable.dataSource = response.data
+                console.log('DRIVER', response.data)
             })
         },
     },

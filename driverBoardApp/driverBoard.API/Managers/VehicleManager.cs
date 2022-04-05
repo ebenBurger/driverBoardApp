@@ -51,7 +51,9 @@ namespace driverBoard.API.Managers
         {
             try
             {
-                var data = _context.Vehicles.Single(a => a.VehicleId == vehicleId);
+                var data = _context.Vehicles
+                    .Include(a => a.Office)
+                    .Single(a => a.VehicleId == vehicleId);
                 return data;
             }
             catch (Exception e)

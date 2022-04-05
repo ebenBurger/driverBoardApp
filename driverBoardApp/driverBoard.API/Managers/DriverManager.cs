@@ -24,7 +24,7 @@ namespace driverBoard.API.Managers
         {
             var driver = _context.Drivers
                 .Where(a => a.IsActive == true)
-                // .Include(b => b.Office)
+                .Include(b => b.Office)
                 .ToList();
             return driver;
         }
@@ -52,7 +52,9 @@ namespace driverBoard.API.Managers
         {
             try
             {
-                var data = _context.Drivers.Single(a => a.DriverId == driverId);
+                var data = _context.Drivers
+                    .Include(a => a.Office)
+                    .Single(a => a.DriverId == driverId);
                 return data;
             }
             catch (Exception e)

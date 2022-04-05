@@ -28,7 +28,7 @@
                             <b-col>
                                 <label>Location</label>
                                 <b-input-group-append>
-                                    <b-form-input disabled v-model="selectedDriver.location"></b-form-input>
+                                    <b-form-input disabled v-model="selectedDriver.office.location"></b-form-input>
                                     <b-input-group-append>
                                         <b-button text="Button" variant="outline-primary" @click="openSearchModal" >Search</b-button>
                                     </b-input-group-append>
@@ -288,6 +288,7 @@ export default {
                 this.isCodeEB = this.selectedDriver.codeEB
                 this.isCodeEC1 = this.selectedDriver.codeEC1
                 this.isCodeEC = this.selectedDriver.codeEC
+                console.log('EDIT DRIVER', response.data)
             })
         },
 
