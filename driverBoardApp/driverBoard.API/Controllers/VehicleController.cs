@@ -69,10 +69,8 @@ namespace driverBoard.API.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    return Ok(data);
-                }
+                
+                return Ok(data);
             }
             catch (Exception e)
             {
