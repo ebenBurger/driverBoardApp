@@ -1,7 +1,7 @@
 import layout from "@/views/largeScreen/layout";
 
 //vehicle
-import main from "@/views/largeScreen/vehicles/main";
+import vehicleMain from "@/views/largeScreen/vehicles/vehicleMain";
 import createVehicle from "@/views/largeScreen/vehicles/createVehicle";
 import editVehicle from "@/views/largeScreen/vehicles/editVehicle";
 
@@ -19,6 +19,9 @@ import editDriver from "@/views/largeScreen/driver/editDriver";
 import contact from "@/views/largeScreen/contact/contact";
 import createContact from "@/views/largeScreen/contact/createContact";
 
+//address
+import addressMain from "@/views/largeScreen/address/addressMain";
+
 export default [
     {
         path: '/',
@@ -27,8 +30,8 @@ export default [
         children: [
             {
                 path: '/',
-                name: 'main',
-                component: main,
+                name: 'vehicleMain',
+                component: vehicleMain,
             },
             {
                 path: '/contact',
@@ -44,6 +47,11 @@ export default [
                 path: '/driver',
                 name: 'driverMain',
                 component: driverMain,
+            },
+            {
+                path: '/address',
+                name: 'addressMain',
+                component: addressMain,
             },
         ]
     },
