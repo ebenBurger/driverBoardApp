@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Managers
@@ -44,6 +45,40 @@ namespace driverBoard.API.Managers
 
             await _context.SaveChangesAsync();
             return driver.DriverId;
+        }
+
+        public Driver GetDriverById(int driverId)
+        {
+            try
+            {
+                var data = _context.Drivers.Single(a => a.DriverId == driverId);
+                return data;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<Driver> UpdateDriverDetails(Driver driver)
+        {
+            try
+            {
+                if (driver.DriverId == 0)
+                {
+                    throw new Exception("Invalid Driver Id");
+                }
+
+                _context.Drivers.Update(driver);
+                await _context.SaveChangesAsync();
+                return driver;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

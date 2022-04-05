@@ -8,5 +8,7 @@ namespace driverBoard.API.Interface
     {
         List<Driver> GetAll();
         Task<int> SaveDriver(Driver driver);
+        Driver GetDriverById(int driverId);
+        Task<Driver> UpdateDriverDetails(Driver driver);
     }
 }

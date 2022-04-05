@@ -56,5 +56,44 @@ namespace driverBoard.API.Controllers
                 return Problem(e.Message);
             }
         }
+
+        [HttpGet("Get/{driverId}")]
+        public IActionResult GetById(int driver)
+        {
+            try
+            {
+                var data = _driverManager.GetDriverById(driver);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
+        [HttpPost("Update")]
+        public IActionResult UpdateDriver(Driver driver)
+        {
+            try
+            {
+                var data = _driverManager.UpdateDriverDetails(driver);
+
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
     }
 }
