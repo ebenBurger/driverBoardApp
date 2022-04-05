@@ -129,6 +129,7 @@ export default {
             .then((response) => {
                 this.vehicleTable.isLoading = false
                 this.vehicleTable.dataSource = response.data
+                console.log('VEHICLE', response.data)
             })
         },
         
