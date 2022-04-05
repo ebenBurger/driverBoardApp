@@ -15,14 +15,14 @@
                         <b-row>
                             <b-col class="text-center my-3">This vehicle 
                                 <span class="text-danger">REQUIRES </span> a 
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeA">Code A</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeA1">Code A1</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeB">Code B</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeC">Code C</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeC1">Code C1</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeEB">Code EB</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeEC1">Code EC1</span>
-                                <span class="badge-info p-1" v-if="selectedVehicle.codeEC">Code EC</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeA">Code A</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeA1">Code A1</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeB">Code B</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeC">Code C</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeC1">Code C1</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeEB">Code EB</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeEC1">Code EC1</span>
+                                <span class="badge-primary p-1" v-if="selectedVehicle.codeEC">Code EC</span>
                                 
                                 license
                             </b-col>
@@ -44,7 +44,7 @@
                             <b-col>
                                 <label>Location</label>
                                 <b-input-group-append>
-                                    <b-form-input disabled v-model="selectedVehicle.location"></b-form-input>
+                                    <b-form-input disabled v-model="selectedVehicle.office.location"></b-form-input>
                                     <b-input-group-append>
                                         <b-button text="Button" variant="outline-primary" @click="openSearchModal" >Search</b-button>
                                     </b-input-group-append>
@@ -230,6 +230,7 @@ export default {
                 this.isCodeEB = this.selectedVehicle.codeEB
                 this.isCodeEC1 = this.selectedVehicle.codeEC1
                 this.isCodeEC = this.selectedVehicle.codeEC
+                console.log('EDIT VEHICLE', response.data)
             })
         },
         
