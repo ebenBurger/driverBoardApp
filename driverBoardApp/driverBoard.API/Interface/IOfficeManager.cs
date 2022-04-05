@@ -8,5 +8,7 @@ namespace driverBoard.API.Interface
     {
         List<Office> GetAll();
         Task<int> SaveOffice(Office office);
+        Office GetOfficeById(int officeId);
+        Task<Office> UpdateOfficeDetails(Office office);
     }
 }

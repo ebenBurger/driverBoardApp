@@ -21,6 +21,7 @@ namespace driverBoard.API.Managers
         public List<Office> GetAll()
         {
             var office = _context.Offices
+                .Where(a => a.IsActive == true)
                 .Include(a => a.Vehicles)
                 .Include(b => b.Drivers)
                 .ToList();
@@ -44,6 +45,40 @@ namespace driverBoard.API.Managers
 
             await _context.SaveChangesAsync();
             return office.OfficeId;
+        }
+
+        public Office GetOfficeById(int officeId)
+        {
+            try
+            {
+                var data = _context.Offices.Single(a => a.OfficeId == officeId);
+                return data;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        public async Task<Office> UpdateOfficeDetails(Office office)
+        {
+            try
+            {
+                if (office.OfficeId == 0)
+                {
+                    throw new Exception("Invalid Office ID");
+                }
+
+                _context.Offices.Update(office);
+                await _context.SaveChangesAsync();
+                return office;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

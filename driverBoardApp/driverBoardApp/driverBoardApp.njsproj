@@ -45,6 +45,7 @@
     <Content Include="src\views\largeScreen\driver\driverMain.vue" />
     <Content Include="src\views\largeScreen\layout.vue" />
     <Content Include="src\views\largeScreen\office\createOffice.vue" />
+    <Content Include="src\views\largeScreen\office\editOffice.vue" />
     <Content Include="src\views\largeScreen\office\officeMain.vue" />
     <Content Include="src\views\largeScreen\vehicles\createVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\editVehicle.vue" />

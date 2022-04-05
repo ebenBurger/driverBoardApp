@@ -17,6 +17,7 @@ namespace driverBoard.API.Models
         public string Provence { get; set; }
         public string Location { get; set; }
         public string TellNumber { get; set; }
+        public bool IsActive { get; set; }
         public DateTime DateCreated { get; set; }
 
         public ICollection<Vehicle> Vehicles { get; set; }

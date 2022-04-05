@@ -18,7 +18,6 @@ namespace driverBoard.API.Controllers
             _officeManager = officeManager;
         }
         
-        //Get
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
@@ -46,6 +45,47 @@ namespace driverBoard.API.Controllers
             try
             {
                 var data = _officeManager.SaveOffice(office);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
+        [HttpGet("Get/{officeId}")]
+        public IActionResult GetById(int officeId)
+        {
+            try
+            {
+                var data = _officeManager.GetOfficeById(officeId);
+                
+                if (officeId == 0)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [HttpPost("Update")]
+        public IActionResult UpdateOffice(Office office)
+        {
+            try
+            {
+                var data = _officeManager.UpdateOfficeDetails(office);
                 if (data == null)
                 {
                     return NotFound();
