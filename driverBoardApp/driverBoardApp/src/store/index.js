@@ -167,6 +167,28 @@ export default new Vuex.Store({
                     })
             })
         },
+        updateOffice: ({state}) => {
+            const payload = state.selectedOffice
+
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Office/Update',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload,
+                }
+
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
         
         //vehicles
         getAllVehiclesRequest: ({state}) => {

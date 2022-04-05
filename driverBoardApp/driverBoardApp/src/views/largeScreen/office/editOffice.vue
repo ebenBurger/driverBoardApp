@@ -80,7 +80,7 @@
         <b-modal id="officeDeleteModal" hide-footer hide-header-close class="text-center" title="Delete Office">
             <b-row>
                 <b-col cols="12">
-                    <label class="text-center">Are you sure you want to delete <span class="font-weight-bold text-red text-center">{{this.selectedOffice}}</span>?</label>
+                    <label class="text-center">Are you sure you want to delete <span class="font-weight-bold text-red text-center">{{this.selectedOffice.location}} </span>branch?</label>
                 </b-col>
             </b-row>
             <b-row>
@@ -114,7 +114,7 @@ export default {
     updated() {
     },
     methods: {
-        ...mapActions(["getOfficeDetails"]),
+        ...mapActions(["getOfficeDetails", "updateOffice"]),
         goBack() {
             this.$router.back()
         },
@@ -133,7 +133,14 @@ export default {
         },
         
         update() {
-            
+            this.$store.commit('setSelectedOffice', this.selectedOffice)
+            this.updateOffice()
+            .then(() => {
+                this.$router.back()
+            })
+            .catch(() => {
+                this.state = 'show'
+            })
         },
         
         openDeleteModal() {
@@ -143,7 +150,14 @@ export default {
             this.$bvModal.hide('officeDeleteModal')
         },
         
-        removeOffice() {},
+        removeOffice() {
+            this.selectedOffice.isActive = false
+            this.$store.commit('setSelectedOffice', this.selectedOffice)
+            this.updateOffice()
+            .then(() => {
+                this.$router.back()                
+            })
+        },
     },
     computed: {
         ...mapState([
