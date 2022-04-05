@@ -63,6 +63,7 @@
     <Folder Include="src\store\" />
     <Folder Include="src\views\" />
     <Folder Include="src\views\largeScreen\" />
+    <Folder Include="src\views\largeScreen\address\" />
     <Folder Include="src\views\largeScreen\contact\" />
     <Folder Include="src\views\largeScreen\driver\" />
     <Folder Include="src\views\largeScreen\office\" />
