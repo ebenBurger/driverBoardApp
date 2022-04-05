@@ -343,16 +343,4 @@ export default {
 
 <style scoped>
 
-.white {
-    background-color: white;
-    width: 200px;
-    height: 50px;
-    color: black;
-}
-.blue {
-    width: 200px;
-    height: 50px;
-    background-color: blue;
-    color: white;
-}
 </style>
