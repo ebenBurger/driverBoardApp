@@ -236,10 +236,18 @@ export default {
                 },
             ]
         },
+        isCodeA: false,
+        isCodeA1: false,
+        isCodeB: false,
+        isCodeC: false,
+        isCodeEB: false,
+        isCodeEC1: false,
+        isCodeEC: false,
     }),
     beforeCreate() {
     },
     created() {
+        this.getSelectedDriver()
     },
     beforeMount() {
     },
@@ -255,11 +263,29 @@ export default {
         goBack() {
             this.$router.back()
         },
+        
+        getSelectedDriver() {
+            if (this.$store.state.selectedDriver == null){
+                this.$router.back()
+            }
+            this.getDriverDetails()
+            .then((response) => {
+                this.$store.commit('setSelectedDriver', response.data)
+                this.isCodeA = this.selectedDriver.codeA
+                this.isCodeA1 = this.selectedDriver.codeA1
+                this.isCodeB = this.selectedDriver.codeB
+                this.isCodeC = this.selectedDriver.codeC
+                this.isCodeEB = this.selectedDriver.codeEB
+                this.isCodeEC1 = this.selectedDriver.codeEC1
+                this.isCodeEC = this.selectedDriver.codeEC
+            })
+        },
 
         loadOffice() {
             this.getAllOffice()
                 .then(response => {
-                    this.officeTable.dataSource = response.data
+                    const that = this
+                    that.officeTable.dataSource = response.data
                 })
         },
 
@@ -305,51 +331,52 @@ export default {
         },
 
         toggleButtonCodeA() {
-            this.selectedDriver.isCodeA = !this.selectedDriver.isCodeA
+            this.isCodeA = !this.isCodeA
         },
         toggleButtonCodeA1() {
-            this.selectedDriver.isCodeA1 = !this.selectedDriver.isCodeA1
+            this.isCodeA1 = !this.isCodeA1
         },
         toggleButtonCodeB() {
-            this.selectedDriver.isCodeB = !this.selectedDriver.isCodeB
+            this.isCodeB = !this.isCodeB
         },
         toggleButtonCodeC() {
-            this.selectedDriver.isCodeC = !this.selectedDriver.isCodeC
+            this.isCodeC = !this.isCodeC
         },
         toggleButtonCodeEB() {
-            this.selectedDriver.isCodeEB = !this.selectedDriver.isCodeEB
+            this.isCodeEB = !this.isCodeEB
         },
         toggleButtonCodeEC1() {
-            this.selectedDriver.isCodeEC1 = !this.selectedDriver.isCodeEC1
+            this.isCodeEC1 = !this.isCodeEC1
         },
         toggleButtonCodeEC() {
-            this.selectedDriver.isCodeEC = !this.selectedDriver.isCodeEC
+            this.isCodeEC = !this.isCodeEC
         },
     },
     computed: {
         ...mapState([
             "selectedDriver"
         ]),
+        
         ACode() {
-            return this.selectedDriver.isCodeA? "primary" : "light"
+            return this.isCodeA ? "primary" : "light"
         },
         A1Code() {
-            return this.selectedDriver.isCodeA1? "primary" : "light"
+            return this.isCodeA1 ? "primary" : "light"
         },
         BCode() {
-            return this.selectedDriver.isCodeB? "primary" : "light"
+            return this.isCodeB ? "primary" : "light"
         },
         CCode() {
-            return this.selectedDriver.isCodeC? "primary" : "light"
+            return this.isCodeC ? "primary" : "light"
         },
         EBCode() {
-            return this.selectedDriver.isCodeEB? "primary" : "light"
+            return this.isCodeEB ? "primary" : "light"
         },
         EC1Code() {
-            return this.selectedDriver.isCodeEC1? "primary" : "light"
+            return this.isCodeEC1 ? "primary" : "light"
         },
         ECCode() {
-            return this.selectedDriver.isCodeEC? "primary" : "light"
+            return this.isCodeEC ? "primary" : "light"
         },
         rows() {
             return this.officeTable.dataSource.length
