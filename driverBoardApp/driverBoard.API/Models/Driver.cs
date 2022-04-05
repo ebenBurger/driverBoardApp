@@ -19,6 +19,7 @@ namespace driverBoard.API.Models
         public bool CodeEB { get; set; }
         public bool CodeEC1 { get; set; }
         public bool CodeEC { get; set; }
+        public bool IsActive { get; set; }
 
         public DateTime DateCreated { get; set; }
 
