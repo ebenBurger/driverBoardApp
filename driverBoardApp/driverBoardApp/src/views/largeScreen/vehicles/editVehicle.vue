@@ -13,6 +13,22 @@
                     </b-row>
                     <B-form>
                         <b-row>
+                            <b-col class="text-center my-3">This vehicle 
+                                <span class="text-danger">REQUIRES </span> a 
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeA">Code A</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeA1">Code A1</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeB">Code B</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeC">Code C</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeC1">Code C1</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeEB">Code EB</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeEC1">Code EC1</span>
+                                <span class="badge-info p-1" v-if="selectedVehicle.codeEC">Code EC</span>
+                                
+                                license
+                            </b-col>
+                            
+                        </b-row>
+                        <b-row>
                             <b-col>
                                 <label>Make</label>
                                 <b-form-input disabled v-model="selectedVehicle.makeVehicle"></b-form-input>
@@ -171,7 +187,13 @@ export default {
                 },
             ]
         },
-        locations: [],
+        isCodeA: false,
+        isCodeA1: false,
+        isCodeB: false,
+        isCodeC: false,
+        isCodeEB: false,
+        isCodeEC1: false,
+        isCodeEC: false,
     }),
     beforeCreate() {
     },
@@ -201,6 +223,13 @@ export default {
             this.getVehicleDetails()
             .then((response) => {
                 this.$store.commit('setSelectedVehicle', response.data)
+                this.isCodeA = this.selectedVehicle.codeA
+                this.isCodeA1 = this.selectedVehicle.codeA1
+                this.isCodeB = this.selectedVehicle.codeB
+                this.isCodeC = this.selectedVehicle.codeC
+                this.isCodeEB = this.selectedVehicle.codeEB
+                this.isCodeEC1 = this.selectedVehicle.codeEC1
+                this.isCodeEC = this.selectedVehicle.codeEC
             })
         },
         
