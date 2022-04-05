@@ -196,7 +196,7 @@ export default {
         
         getSelectedVehicle() {
             if (this.$store.state.selectedVehicle == null) {
-                this.$router.push({path: '/'})
+                this.$router.back()
             }
             this.getVehicleDetails()
             .then((response) => {
