@@ -23,6 +23,7 @@ namespace driverBoard.API.Managers
         public List<Driver> GetAll()
         {
             var driver = _context.Drivers
+                .Where(a => a.IsActive == true)
                 .Include(b => b.Office)
                 .ToList();
             return driver;
