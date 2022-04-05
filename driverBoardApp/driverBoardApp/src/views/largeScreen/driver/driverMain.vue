@@ -118,7 +118,10 @@ export default {
         addDriver() {
             this.$router.push({path: '/addDriver'})
         },
-        openDriver() {},
+        openDriver(driver) {
+            this.$store.commit('setSelectedDriver', driver)
+            this.$router.push({path: '/editDriver'})
+        },
         driverRequest() {
             this.driverTable.isLoading = true
             

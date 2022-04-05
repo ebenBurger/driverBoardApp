@@ -11,6 +11,7 @@ export default new Vuex.Store({
         //selected- view data.
         selectedVehicle: null,
         selectedOffice: null,
+        selectedDriver: null,
         
         //requests and initial states
         
@@ -58,6 +59,7 @@ export default new Vuex.Store({
         //driver
         setDriverRequest: (state, payload) => {state.driverRequest = payload},
         setCreateDriverRequest: (state, payload) => {state.createDriverRequest = payload},
+        setSelectedDriver: (state, payload) => {state.selectedDriver = payload},
 
         //contacts
         setContactRequest: (state, payload) => {state.contactRequest = payload},
@@ -304,6 +306,45 @@ export default new Vuex.Store({
                         'Content-Type': 'application/json'
                     },
                     data: payload
+                }
+
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+        getDriverDetails: ({state}) => {
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Driver/Get/' + state.selectedDriver.driverId,
+                    headers: {},
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.setSelectedDriver = response.data
+                        resolve(response)
+                    })
+                    .catch( err => {
+                        reject(err)
+                    })
+            })
+        },
+        updateDriver: ({state}) => {
+            const payload = state.selectedDriver
+
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Driver/Update',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload,
                 }
 
                 axios(callConfig)

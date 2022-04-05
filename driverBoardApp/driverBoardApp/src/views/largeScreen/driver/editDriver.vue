@@ -5,27 +5,30 @@
                 <b-card class="w-25">
                     <b-row>
                         <B-col>
-                            <h4>Add Driver</h4>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="m-0">Edit Driver</h4>
+                                <b-button variant="outline-red" squared @click="openDeleteModal" size="sm">Delete</b-button>
+                            </div>
                         </B-col>
                     </b-row>
                     <B-form>
                         <b-row>
                             <b-col>
                                 <label>Name</label>
-                                <b-form-input v-model="driverData.name"></b-form-input>
+                                <b-form-input v-model="selectedDriver.name"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col>
                                 <label>Surname</label>
-                                <b-form-input v-model="driverData.surname"></b-form-input>
+                                <b-form-input v-model="selectedDriver.surname"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col>
                                 <label>Location</label>
                                 <b-input-group-append>
-                                    <b-form-input disabled v-model="driverData.location"></b-form-input>
+                                    <b-form-input disabled v-model="selectedDriver.location"></b-form-input>
                                     <b-input-group-append>
                                         <b-button text="Button" variant="outline-primary" @click="openSearchModal" >Search</b-button>
                                     </b-input-group-append>
@@ -43,67 +46,67 @@
                                 <b-col>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeA"
+                                        v-model="selectedDriver.codeA"
                                         :variant="ACode"
-                                        :pressed.sync="driverData.codeA"
+                                        :pressed.sync="selectedDriver.codeA"
                                         @click="toggleButtonCodeA"
-                                    >Code A: {{driverData.codeA ? 'Yes' : 'No'}}</b-button>
+                                    >Code A: {{selectedDriver.codeA ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeA1"
+                                        v-model="selectedDriver.codeA1"
                                         :variant="A1Code"
-                                        :pressed.sync="driverData.codeA1"
+                                        :pressed.sync="selectedDriver.codeA1"
                                         @click="toggleButtonCodeA1"
                                         class="ml-2"
-                                    >Code A1: {{driverData.codeA1 ? 'Yes' : 'No'}}</b-button>
+                                    >Code A1: {{selectedDriver.codeA1 ? 'Yes' : 'No'}}</b-button>
                                 </b-col>
                             </b-row>
                             <b-row>
                                 <b-col>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeB"
+                                        v-model="selectedDriver.codeB"
                                         :variant="BCode"
-                                        :pressed.sync="driverData.codeB"
+                                        :pressed.sync="selectedDriver.codeB"
                                         @click="toggleButtonCodeB"
                                         class="ml-2"
-                                    >Code B: {{driverData.codeB ? 'Yes' : 'No'}}</b-button>
+                                    >Code B: {{selectedDriver.codeB ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeC"
+                                        v-model="selectedDriver.codeC"
                                         :variant="CCode"
-                                        :pressed.sync="driverData.codeC"
+                                        :pressed.sync="selectedDriver.codeC"
                                         @click="toggleButtonCodeC"
                                         class="ml-2"
-                                    >Code C: {{driverData.codeC ? 'Yes' : 'No'}}</b-button>
+                                    >Code C: {{selectedDriver.codeC ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeEB"
+                                        v-model="selectedDriver.codeEB"
                                         :variant="EBCode"
-                                        :pressed.sync="driverData.codeEB"
+                                        :pressed.sync="selectedDriver.codeEB"
                                         @click="toggleButtonCodeEB"
                                         class="ml-2"
-                                    >Code EB: {{driverData.codeEB ? 'Yes' : 'No'}}</b-button>
+                                    >Code EB: {{selectedDriver.codeEB ? 'Yes' : 'No'}}</b-button>
                                 </b-col>
                             </b-row>
                             <b-row>
                                 <b-col>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeEC1"
+                                        v-model="selectedDriver.codeEC1"
                                         :variant="EC1Code"
-                                        :pressed.sync="driverData.codeEC1"
+                                        :pressed.sync="selectedDriver.codeEC1"
                                         @click="toggleButtonCodeEC1"
                                         class="ml-2"
-                                    >Code EC1: {{driverData.codeEC1 ? 'Yes' : 'No'}}</b-button>
+                                    >Code EC1: {{selectedDriver.codeEC1 ? 'Yes' : 'No'}}</b-button>
                                     <b-button
                                         pill
-                                        v-model="driverData.codeEC"
+                                        v-model="selectedDriver.codeEC"
                                         :variant="ECCode"
-                                        :pressed.sync="driverData.codeEC"
+                                        :pressed.sync="selectedDriver.codeEC"
                                         @click="toggleButtonCodeEC"
                                         class="ml-2"
-                                    >Code EC: {{driverData.codeEC ? 'Yes' : 'No'}}</b-button>
+                                    >Code EC: {{selectedDriver.codeEC ? 'Yes' : 'No'}}</b-button>
                                 </b-col>
                             </b-row>
                         </b-row>
@@ -115,7 +118,7 @@
                                         <b-button variant="outline-red" squared @click="goBack" class="ml-2">Cancel</b-button>
                                     </div>
                                     <div>
-                                        <b-button variant="primary" squared @click="save" class="ml-2">Save</b-button>
+                                        <b-button variant="primary" squared @click="updateDriverDetails" class="ml-2">Update</b-button>
                                     </div>
                                 </div>
                             </b-col>
@@ -177,28 +180,30 @@
                 <b-button variant="outline-danger" class="mr-2" @click="hideSearchModal">Cancel</b-button>
             </div>
         </b-modal>
+
+        <b-modal id="driverDeleteModal" hide-footer hide-header-close class="text-center" title="Delete Driver">
+            <b-row>
+                <b-col cols="12">
+                    <label class="text-center">Are you sure you want to delete <span class="font-weight-bold text-red text-center">{{this.selectedDriver.name}} {{this.selectedDriver.surname}}</span>?</label>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col cols="12" class="text-center mt-3">
+                    <b-button variant="outline-red" @click="hideDeleteModal" squared class="mr-2" >Cancel</b-button>
+                    <b-button variant="red" @click="removeDriver" squared >Delete</b-button>
+                </b-col>
+            </b-row>
+            <div class="d-block"></div>
+        </b-modal>
         
     </div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
     data: () => ({
-        driverData: {
-            name: null,
-            surname: null,
-            location: null,
-            codeA: false,
-            codeA1: false,
-            codeB: false,
-            codeC: false,
-            codeEB: false,
-            codeEC1: false,
-            codeEC: false,
-            officeId: null,
-        },
         officeTable: {
             resultsPerPage: 10,
             currentPage: 1,
@@ -231,19 +236,10 @@ export default {
                 },
             ]
         },
-        isCodeA: false,
-        isCodeA1: false,
-        isCodeB: false,
-        isCodeC: false,
-        isCodeEB: false,
-        isCodeEC1: false,
-        isCodeEC: false,
-        
     }),
     beforeCreate() {
     },
     created() {
-        
     },
     beforeMount() {
     },
@@ -251,28 +247,30 @@ export default {
     },
     beforeUpdate() {
     },
-    updated() {},
+    updated() {
+    },
     methods: {
-        ...mapActions(["createNewDriver", "getAllOffice" ]),
+        ...mapActions(['getDriverDetails', "getAllOffice", "updateDriver"]),
+        
         goBack() {
             this.$router.back()
         },
+
         loadOffice() {
             this.getAllOffice()
                 .then(response => {
                     this.officeTable.dataSource = response.data
                 })
         },
-        
-        save() {
-            this.$store.commit('setCreateDriverRequest', this.driverData)
-            this.createNewDriver()
+
+        updateDriverDetails() {
+            this.$store.commit('setSelectedDriver', this.selectedDriver)
+            this.updateDriver()
             .then(() => {
-                this.goBack()
-                console.log("DRIVER", this.driverData)
+                this.$router.back()
             })
-            
         },
+
 
         openSearchModal() {
             this.$bvModal.show('officeSearchModal')
@@ -283,56 +281,75 @@ export default {
         },
         addOffice(rowItem) {
             this.hideSearchModal()
-            this.driverData.location = rowItem.location
-            this.driverData.officeId = rowItem.officeId
+            this.selectedDriver.location = rowItem.location
+            this.selectedDriver.officeId = rowItem.officeId
             console.log("NEW OFFICE", rowItem)
         },
 
+        openDeleteModal() {
+            this.$bvModal.show('driverDeleteModal')
+        },
+        hideDeleteModal() {
+            this.$bvModal.hide('driverDeleteModal')
+        },
+        removeDriver() {
+            this.selectedDriver.isActive = false
+            this.$store.commit('setSelectedDriver', this.selectedDriver)
+            this.updateDriver()
+                .then(() => {
+                    this.$router.back()
+                })
+                .catch (() => {
+                    this.state= 'show'
+                })
+        },
 
-        //toggle license classes
         toggleButtonCodeA() {
-            this.isCodeA = !this.isCodeA
+            this.selectedDriver.isCodeA = !this.selectedDriver.isCodeA
         },
         toggleButtonCodeA1() {
-            this.isCodeA1 = !this.isCodeA1
+            this.selectedDriver.isCodeA1 = !this.selectedDriver.isCodeA1
         },
         toggleButtonCodeB() {
-            this.isCodeB = !this.isCodeB
+            this.selectedDriver.isCodeB = !this.selectedDriver.isCodeB
         },
         toggleButtonCodeC() {
-            this.isCodeC = !this.isCodeC
+            this.selectedDriver.isCodeC = !this.selectedDriver.isCodeC
         },
         toggleButtonCodeEB() {
-            this.isCodeEB = !this.isCodeEB
+            this.selectedDriver.isCodeEB = !this.selectedDriver.isCodeEB
         },
         toggleButtonCodeEC1() {
-            this.isCodeEC1 = !this.isCodeEC1
+            this.selectedDriver.isCodeEC1 = !this.selectedDriver.isCodeEC1
         },
         toggleButtonCodeEC() {
-            this.isCodeEC = !this.isCodeEC
+            this.selectedDriver.isCodeEC = !this.selectedDriver.isCodeEC
         },
     },
     computed: {
+        ...mapState([
+            "selectedDriver"
+        ]),
         ACode() {
-            return this.isCodeA? "primary" : "light"
+            return this.selectedDriver.isCodeA? "primary" : "light"
         },
         A1Code() {
-            return this.isCodeA1? "primary" : "light"
+            return this.selectedDriver.isCodeA1? "primary" : "light"
         },
         BCode() {
-            return this.isCodeB? "primary" : "light"
+            return this.selectedDriver.isCodeB? "primary" : "light"
         },
         CCode() {
-            return this.isCodeC? "primary" : "light"
+            return this.selectedDriver.isCodeC? "primary" : "light"
         },
         EBCode() {
-            return this.isCodeEB? "primary" : "light"
+            return this.selectedDriver.isCodeEB? "primary" : "light"
         },
         EC1Code() {
-            return this.isCodeEC1? "primary" : "light"
+            return this.selectedDriver.isCodeEC1? "primary" : "light"
         },
         ECCode() {
-            return this.isCodeEC? "primary" : "light"
+            return this.selectedDriver.isCodeEC? "primary" : "light"
         },
         rows() {
             return this.officeTable.dataSource.length
@@ -343,16 +360,4 @@ export default {
 
 <style scoped>
 
-.white {
-    background-color: white;
-    width: 200px;
-    height: 50px;
-    color: black;
-}
-.blue {
-    width: 200px;
-    height: 50px;
-    background-color: blue;
-    color: white;
-}
 </style>

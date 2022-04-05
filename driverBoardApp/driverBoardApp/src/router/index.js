@@ -13,6 +13,7 @@ import editOffice from "@/views/largeScreen/office/editOffice";
 //driver
 import driverMain from "@/views/largeScreen/driver/driverMain";
 import createDriver from "@/views/largeScreen/driver/createDriver";
+import editDriver from "@/views/largeScreen/driver/editDriver";
 
 //contact
 import contact from "@/views/largeScreen/contact/contact";
@@ -75,6 +76,11 @@ export default [
         path: '/addDriver',
         name: 'addDriver',
         component: createDriver,
+    },
+    {
+        path: '/editDriver',
+        name: 'editDriver',
+        component: editDriver,
     },
 
     //additional Contact pages
