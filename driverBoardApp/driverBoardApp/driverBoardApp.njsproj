@@ -51,7 +51,7 @@
     <Content Include="src\views\largeScreen\office\officeMain.vue" />
     <Content Include="src\views\largeScreen\vehicles\createVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\editVehicle.vue" />
-    <Content Include="src\views\largeScreen\vehicles\main.vue" />
+    <Content Include="src\views\largeScreen\vehicles\vehicleMain.vue" />
     <Content Include="src\views\largeScreen\vehicles\viewVehicle.vue" />
   </ItemGroup>
   <ItemGroup>
