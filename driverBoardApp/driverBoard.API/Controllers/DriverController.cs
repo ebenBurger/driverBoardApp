@@ -58,11 +58,11 @@ namespace driverBoard.API.Controllers
         }
 
         [HttpGet("Get/{driverId}")]
-        public IActionResult GetById(int driver)
+        public IActionResult GetById(int driverId)
         {
             try
             {
-                var data = _driverManager.GetDriverById(driver);
+                var data = _driverManager.GetDriverById(driverId);
                 if (data == null)
                 {
                     return NotFound();

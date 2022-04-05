@@ -24,7 +24,7 @@ namespace driverBoard.API.Managers
         {
             var driver = _context.Drivers
                 .Where(a => a.IsActive == true)
-                .Include(b => b.Office)
+                // .Include(b => b.Office)
                 .ToList();
             return driver;
         }
