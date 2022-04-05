@@ -177,7 +177,7 @@ export default {
     },
     created() {
         this.getSelectedVehicle()
-        this.loadOffice()
+        
     },
     beforeMount() {
     },
@@ -242,6 +242,7 @@ export default {
         },
         
         openSearchModal() {
+            this.loadOffice()
             this.$bvModal.show('officeSearchModal')
         },
         hideSearchModal() {

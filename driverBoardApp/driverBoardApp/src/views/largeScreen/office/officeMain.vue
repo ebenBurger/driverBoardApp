@@ -117,7 +117,6 @@ export default {
         openOffice(office) {
             this.$store.commit('setSelectedOffice', office)
             this.$router.push({path: '/editOffice'})
-            console.log("OFFICE", office)
         },
         officeRequest() {
             this.officeTable.isLoading = true
