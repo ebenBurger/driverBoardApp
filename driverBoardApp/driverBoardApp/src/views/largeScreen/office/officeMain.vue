@@ -127,6 +127,7 @@ export default {
             .then((response) => {
                 this.officeTable.isLoading= false
                 this.officeTable.dataSource = response.data
+                console.log('OFFICE', response.data)
             })
         },
         addOffice() {

@@ -128,7 +128,7 @@ export default {
             this.getOfficeDetails()
             .then((response) => {
                 this.$store.commit("setSelectedOffice", response.data)
-                console.log("DATA", response.data)
+                console.log("OFFICE EDIT", response.data)
             })
         },
         
