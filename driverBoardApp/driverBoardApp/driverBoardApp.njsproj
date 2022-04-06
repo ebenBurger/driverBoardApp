@@ -42,6 +42,7 @@
     <Content Include="src\views\largeScreen\address\addressMain.vue" />
     <Content Include="src\views\largeScreen\contact\contact.vue" />
     <Content Include="src\views\largeScreen\contact\createContact.vue" />
+    <Content Include="src\views\largeScreen\contact\editContact.vue" />
     <Content Include="src\views\largeScreen\driver\createDriver.vue" />
     <Content Include="src\views\largeScreen\driver\driverMain.vue" />
     <Content Include="src\views\largeScreen\driver\editDriver.vue" />

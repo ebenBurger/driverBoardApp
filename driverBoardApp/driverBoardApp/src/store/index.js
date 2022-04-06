@@ -12,6 +12,7 @@ export default new Vuex.Store({
         selectedVehicle: null,
         selectedOffice: null,
         selectedDriver: null,
+        selectedContact: null,
         
         //requests and initial states
         

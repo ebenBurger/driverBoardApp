@@ -18,6 +18,7 @@ import editDriver from "@/views/largeScreen/driver/editDriver";
 //contact
 import contact from "@/views/largeScreen/contact/contact";
 import createContact from "@/views/largeScreen/contact/createContact";
+import editContact from "@/views/largeScreen/contact/editContact";
 
 //address
 import addressMain from "@/views/largeScreen/address/addressMain";
@@ -96,5 +97,10 @@ export default [
         path: '/addContact',
         name: 'addContact',
         component: createContact,
+    },
+    {
+        path: '/editContact',
+        name: 'editContact',
+        component: editContact,
     },
 ]  
