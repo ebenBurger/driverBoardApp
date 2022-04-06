@@ -207,6 +207,7 @@ export default {
             codeEC1: false,
             codeEC: false,
             officeId: null,
+            isActive: true,
         },
         officeTable: {
             resultsPerPage: 10,
