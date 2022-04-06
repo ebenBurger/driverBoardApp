@@ -16,10 +16,6 @@ export default new Vuex.Store({
         
         //requests and initial states
         
-        //address
-        addressBookRequest: null,
-        addressBookCreateRequest: null,
-        
         //office
         officeRequest: null,
         officeCreateRequest: null,
@@ -43,10 +39,6 @@ export default new Vuex.Store({
             localStorage.setItem('apiUrl', payload)
         },
         
-        //address Book
-        setAddressBookRequest: (state, payload) => {state.addressBookRequest = payload},
-        setAddressBookCreateRequest: (state, payload) => {state.addressBookCreateRequest = payload},
-        
         //office
         setOfficeRequest: (state, payload) => {state.officeRequest = payload},
         setOfficeCreateRequest: (state, payload) => {state.officeCreateRequest = payload},
@@ -69,48 +61,6 @@ export default new Vuex.Store({
         
     },
     actions: {
-        //address book
-        getAllAddressBook: ({state}) => {
-          return  new Promise((resolve, reject) => {
-                const callConfig = {
-                    method: 'get',
-                    url: state.baseUrl + 'AddressBook/GetAll',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-                axios(callConfig)
-                    .then(response => {
-                        state.addressBookDeatil = response.data
-                        resolve(response)
-                    })
-                    .catch(err => {
-                        reject(err)
-                    })
-            })
-        },
-        createNewAddressBook: ({state}) => {
-            let payload = state.addressBookCreateRequest
-
-            return new Promise((resolve, reject) => {
-                const callConfig = {
-                    method: 'post',
-                    url: state.baseUrl + 'AddressBook/Save',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: payload
-                }
-
-                axios(callConfig)
-                    .then(response => {
-                        resolve(response)
-                    })
-                    .catch(err => {
-                        reject(err)
-                    })
-            })
-        },
         
         //Office
         getAllOffice: ({state}) => {

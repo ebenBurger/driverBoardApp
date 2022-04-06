@@ -20,9 +20,6 @@ import contact from "@/views/largeScreen/contact/contact";
 import createContact from "@/views/largeScreen/contact/createContact";
 import editContact from "@/views/largeScreen/contact/editContact";
 
-//address
-import addressMain from "@/views/largeScreen/address/addressMain";
-
 export default [
     {
         path: '/',
@@ -48,11 +45,6 @@ export default [
                 path: '/driver',
                 name: 'driverMain',
                 component: driverMain,
-            },
-            {
-                path: '/address',
-                name: 'addressMain',
-                component: addressMain,
             },
         ]
     },
