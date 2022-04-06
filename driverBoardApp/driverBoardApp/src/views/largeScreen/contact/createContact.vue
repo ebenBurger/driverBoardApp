@@ -39,9 +39,18 @@
                         <hr class="mx-3">
                         <label class="text-primary font-weight-bold mb-4">Company Details</label>
                         <b-row>
-                            <b-col cols="6">
+                            <b-col>
                                 <label>Company Name</label>
                                 <b-form-input v-model="contactData.companyName"></b-form-input>
+                            </b-col>
+                            <b-col>
+                                <label>Location</label>
+                                <b-input-group-append>
+                                    <b-form-input disabled v-model="contactData.location"></b-form-input>
+                                    <b-input-group-append>
+                                        <b-button text="Button" variant="outline-primary" @click="openSearchModal" >Search</b-button>
+                                    </b-input-group-append>
+                                </b-input-group-append>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -98,6 +107,60 @@
                 </b-card>
             </b-col>
         </b-row>
+
+        <b-modal id="officeSearchModal" hide-footer size="xl" title="Atrax Office Search" @close="hideSearchModal">
+            <!--            <label>Office Search</label>-->
+            <div class="d-flex w-100 mb-4">
+                <!--                <div class="w-50 h-auto">-->
+                <!--                    <b-form-input v-model="frontHarvestSearch.front" @keyup="filterFronts"></b-form-input>-->
+                <!--                    <b-form-input ></b-form-input>-->
+                <!--                </div>-->
+                <!--                <div class="w-50 h-auto">-->
+                <!--                    <div class="d-flex justify-content-end ">-->
+                <!--                        <b-button variant="outline-danger" class="mr-2">Clear</b-button>-->
+                <!--                        <b-button variant="outline-primary" class="mr-2" >Search</b-button>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+            <div>
+                <b-table striped hover
+                         :items="officeTable.dataSource"
+                         :fields="officeTable.tableColumns"
+                         :busy="officeTable.isLoading"
+                         @row-clicked="addOffice"
+                         :per-page="officeTable.resultsPerPage"
+                         id="stockTable"
+                         :current-page="officeTable.currentPage">
+
+                    <template #table-busy>
+                        <div class="text-center my-2">
+                            <b-spinner style="width: 3rem; height: 3rem;"></b-spinner>
+                        </div>
+                    </template>
+
+                    <template #cell(actions)="row">
+                        <b-row align-v="center" align-h="end">
+                            <b-button size="sm" class="btn-icon" @click="addOffice(row.item)">
+                                <b-icon-chevron-right></b-icon-chevron-right>
+                            </b-button>
+                        </b-row>
+                    </template>
+
+                </b-table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <b-pagination
+                    v-model="officeTable.currentPage"
+                    :total-rows="rows"
+                    :per-page="officeTable.resultsPerPage"
+                    aria-controls="stockTable"
+                ></b-pagination>
+            </div>
+            <div class="d-flex justify-content-end w-100">
+                <b-button variant="outline-danger" class="mr-2" @click="hideSearchModal">Cancel</b-button>
+            </div>
+        </b-modal>
+        
     </div>
 </template>
 
@@ -120,6 +183,41 @@ export default {
             postalCode: null,
             city: null,
             provence: null,
+            isActive: true,
+            location: null,
+            officeId: null,
+        },
+        officeTable: {
+            resultsPerPage: 10,
+            currentPage: 1,
+            dataSource: [],
+            isLoading: false,
+            tableColumns: [
+                {
+                    label: 'Office',
+                    key: 'building',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: 'Address',
+                    key: 'addressLine1',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: 'Location',
+                    key: 'location',
+                    sortable: true,
+                    tdClass:'',
+                },
+                {
+                    label: '',
+                    key: 'actions',
+                    sortable: false,
+                    tdClass: ''
+                },
+            ]
         },
     }),
     beforeCreate() {
@@ -135,10 +233,32 @@ export default {
     updated() {
     },
     methods: {
-        ...mapActions(["createNewContact"]),
+        ...mapActions(["createNewContact", "getAllOffice"]),
         
         goBack() {
             this.$router.back()
+        },
+
+        openSearchModal() {
+            this.$bvModal.show('officeSearchModal')
+            this.loadOffice()
+        },
+        hideSearchModal() {
+            this.$bvModal.hide('officeSearchModal')
+        },
+
+        loadOffice() {
+            this.getAllOffice()
+                .then(response => {
+                    this.officeTable.dataSource = response.data
+                })
+        },
+
+        addOffice(rowItem) {
+            this.hideSearchModal()
+            this.contactData.location = rowItem.location
+            this.contactData.officeId = rowItem.officeId
+            console.log('ROW ITEM', rowItem)
         },
         
         save() {
@@ -154,7 +274,11 @@ export default {
             })
         },
     },
-    computed: {},
+    computed: {
+        rows() {
+            return this.officeTable.dataSource.length
+        },
+    },
 }
 </script>
 
