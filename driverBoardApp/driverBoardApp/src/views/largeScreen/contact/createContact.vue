@@ -44,7 +44,7 @@
                                 <b-form-input v-model="contactData.companyName"></b-form-input>
                             </b-col>
                             <b-col>
-                                <label>Location</label>
+                                <label>Client Location</label>
                                 <b-input-group-append>
                                     <b-form-input disabled v-model="contactData.location"></b-form-input>
                                     <b-input-group-append>

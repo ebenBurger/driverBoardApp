@@ -56,5 +56,43 @@ namespace driverBoard.API.Controllers
                 return Problem(e.Message);
             }
         }
+
+        [HttpGet("Get/{contactId}")]
+        public IActionResult GetById(int contactId)
+        {
+            try
+            {
+                var data = _contactManager.GetContactById(contactId);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
+        [HttpPost("Update")]
+        public IActionResult UpdateContact(Contact contact)
+        {
+            try
+            {
+                var data = _contactManager.UpdateContactDetails(contact);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
     }
 }

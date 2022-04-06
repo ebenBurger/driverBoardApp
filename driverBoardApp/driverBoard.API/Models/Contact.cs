@@ -18,9 +18,10 @@ namespace driverBoard.API.Models
         public string OfficePark { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
         public string City { get; set; }
         public string Provence { get; set; }
+        public string Location { get; set; }
         public bool IsActive { get; set; }
         public DateTime DateCreated { get; set; }
 

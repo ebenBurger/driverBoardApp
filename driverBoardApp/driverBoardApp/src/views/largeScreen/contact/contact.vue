@@ -138,7 +138,10 @@ export default {
         addContact() {
             this.$router.push({path: '/addContact'})
         },
-        openContact() {},
+        openContact(contact) {
+            this.$store.commit('setSelectedContact', contact)
+            this.$router.push({path: '/editContact'})
+        },
     },
     computed: {
         rows() {

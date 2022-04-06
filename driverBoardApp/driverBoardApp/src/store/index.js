@@ -65,6 +65,7 @@ export default new Vuex.Store({
         //contacts
         setContactRequest: (state, payload) => {state.contactRequest = payload},
         setCreateContactRequest: (state, payload) => {state.createContactRequest = payload},
+        setSelectedContact: (state, payload) => {state.selectedContact = payload},
         
     },
     actions: {
@@ -389,6 +390,45 @@ export default new Vuex.Store({
                         'Content-Type': 'application/json'
                     },
                     data: payload
+                }
+
+                axios(callConfig)
+                    .then(response => {
+                        resolve(response)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
+        },
+        getContactDetails: ({state}) => {
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'get',
+                    url: state.baseUrl + 'Contact/Get/' + state.selectedContact.contactId,
+                    headers: {},
+                }
+                axios(callConfig)
+                    .then(response => {
+                        state.setSelectedContact = response.data
+                        resolve(response)
+                    })
+                    .catch( err => {
+                        reject(err)
+                    })
+            })
+        },
+        updateContact: ({state}) => {
+            const payload = state.selectedContact
+
+            return new Promise((resolve, reject) => {
+                const callConfig = {
+                    method: 'post',
+                    url: state.baseUrl + 'Contact/Update',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: payload,
                 }
 
                 axios(callConfig)

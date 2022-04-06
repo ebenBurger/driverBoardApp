@@ -8,5 +8,7 @@ namespace driverBoard.API.Interface
     {
         List<Contact> GetAllContacts();
         Task<int> SaveContact(Contact contact);
+        Contact GetContactById(int contactId);
+        Task<Contact> UpdateContactDetails(Contact contact);
     }
 }

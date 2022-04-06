@@ -45,5 +45,41 @@ namespace driverBoard.API.Managers
             await _context.SaveChangesAsync();
             return contact.ContactId;
         }
+
+        public Contact GetContactById(int contactId)
+        {
+            try
+            {
+                var data = _context.Contacts
+                    .Include(a => a.Office)
+                    .Single(b => b.ContactId == contactId);
+                return data;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<Contact> UpdateContactDetails(Contact contact)
+        {
+            try
+            {
+                if (contact.ContactId == 0)
+                {
+                    throw new Exception("Invalid Contact Id");
+                }
+
+                _context.Contacts.Update(contact);
+                await _context.SaveChangesAsync();
+                return contact;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }
