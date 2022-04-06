@@ -22,5 +22,6 @@ namespace driverBoard.API.Models
 
         public ICollection<Vehicle> Vehicles { get; set; }
         public ICollection<Driver> Drivers { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
     }
 }

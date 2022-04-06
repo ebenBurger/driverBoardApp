@@ -21,6 +21,10 @@ namespace driverBoard.API.Models
         public int PostalCode { get; set; }
         public string City { get; set; }
         public string Provence { get; set; }
+        public bool IsActive { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public int OfficeId { get; set; }
+        public Office Office { get; set; }
     }
 }

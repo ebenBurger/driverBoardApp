@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Managers
 {
@@ -19,7 +20,10 @@ namespace driverBoard.API.Managers
         
         public List<Contact> GetAllContacts()
         {
-            var contact = _context.Contacts.ToList();
+            var contact = _context.Contacts
+                .Where(a => a.IsActive == true)
+                .Include(b => b.Office)
+                .ToList();
             return contact;
         }
 

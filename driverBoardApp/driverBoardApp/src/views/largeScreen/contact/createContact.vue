@@ -78,7 +78,7 @@
                         <b-row>
                             <b-col class="col-2">
                                 <label>Post Code</label>
-                                <b-form-input v-model="contactData.postCode"></b-form-input>
+                                <b-form-input v-model="contactData.postalCode"></b-form-input>
                             </b-col>
                         </b-row>
                         <hr class="mx-3">
@@ -117,7 +117,7 @@ export default {
             officePark: null,
             addressLine1: null,
             addressLine2: null,
-            postCode: null,
+            postalCode: null,
             city: null,
             provence: null,
         },

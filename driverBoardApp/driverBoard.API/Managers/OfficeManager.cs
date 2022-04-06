@@ -24,6 +24,7 @@ namespace driverBoard.API.Managers
                 .Where(a => a.IsActive == true)
                 .Include(a => a.Vehicles)
                 .Include(b => b.Drivers)
+                .Include(c=> c.Contacts)
                 .ToList();
             return office;
         }
