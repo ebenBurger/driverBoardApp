@@ -87,7 +87,7 @@ export default {
                 },
                 {
                     label: 'Location',
-                    key: 'office.location',
+                    key: 'location',
                     sortable: true,
                     tdClass:'',
                 },
