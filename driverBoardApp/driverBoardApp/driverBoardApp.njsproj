@@ -52,6 +52,7 @@
     <Content Include="src\views\largeScreen\vehicles\createVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\editVehicle.vue" />
     <Content Include="src\views\largeScreen\vehicles\vehicleMain.vue" />
+    <Content Include="src\views\login.vue" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
