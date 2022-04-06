@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using driverBoard.API.Models;
 
 namespace driverBoard.API.Migrations
 {
     [DbContext(typeof(DriverAppContext))]
-    partial class DriverAppContextModelSnapshot : ModelSnapshot
+    [Migration("20220406083948_updatedContactCProps")]
+    partial class updatedContactCProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,8 +118,8 @@ namespace driverBoard.API.Migrations
                     b.Property<string>("OfficePark")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int");
 
                     b.Property<string>("Provence")
                         .HasColumnType("nvarchar(max)");
