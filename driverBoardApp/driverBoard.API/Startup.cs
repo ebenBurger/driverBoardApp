@@ -44,7 +44,6 @@ namespace driverBoard.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Driver Board Application", Version = "v1" });
             });
             
-            services.TryAddScoped<IAddressBookManager, AddressBookManager>();
             services.TryAddScoped<IContactManager, ContactManager>();
             services.TryAddScoped<IDestinationManager, DestinaitionManager>();
             services.TryAddScoped<IDriverManager, DriverManager>();

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace driverBoard.API.Managers
 {
