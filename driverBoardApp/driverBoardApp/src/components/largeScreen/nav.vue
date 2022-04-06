@@ -2,7 +2,10 @@
     <div>
         <b-navbar class="navbar">
             <b-navbar-brand>
-                Atrax Logistics    
+                <router-link exact-active-class="active" to="/">
+                    Atrax Logistics
+                </router-link>
+                    
             </b-navbar-brand>
             <div>
                 <b-navbar-nav>
@@ -10,7 +13,7 @@
                         <font-awesome-icon icon="fa-building" />
                         Offices
                     </router-link>
-                    <router-link exact-active-class="active" to="/">
+                    <router-link exact-active-class="active" to="/vehicle">
                         <font-awesome-icon icon="fa-home" />
                         Vehicle
                     </router-link>

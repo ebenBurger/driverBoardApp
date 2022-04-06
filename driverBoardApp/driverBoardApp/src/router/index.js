@@ -1,5 +1,8 @@
 import layout from "@/views/largeScreen/layout";
 
+//login
+import login from "@/views/login";
+
 //vehicle
 import vehicleMain from "@/views/largeScreen/vehicles/vehicleMain";
 import createVehicle from "@/views/largeScreen/vehicles/createVehicle";
@@ -23,11 +26,16 @@ import editContact from "@/views/largeScreen/contact/editContact";
 export default [
     {
         path: '/',
+        name: 'login',
+        component: login, 
+    },
+    {
+        path: '/',
         name: 'layout',
         component: layout,
         children: [
             {
-                path: '/',
+                path: '/vehicle',
                 name: 'vehicleMain',
                 component: vehicleMain,
             },
