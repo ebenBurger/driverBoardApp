@@ -2,10 +2,12 @@
 using System.Linq;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace driverBoard.API.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     

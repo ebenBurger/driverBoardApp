@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using driverBoard.API.Authentication;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Models
 {
-    public class DriverAppContext : DbContext
+    public class DriverAppContext : IdentityDbContext<ApplicationUser>
     {
         public DriverAppContext(DbContextOptions options) : base(options) { }
         public DbSet<Contact> Contacts { get; set; }
