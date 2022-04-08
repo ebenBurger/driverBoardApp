@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        baseUrl: '',
+        baseUrl: 'https://localhost:5001/',
         
         //selected- view data.
         selectedVehicle: null,
@@ -15,6 +15,9 @@ export default new Vuex.Store({
         selectedContact: null,
         
         //requests and initial states
+        
+        //login
+        loginRequest: null,
         
         //office
         officeRequest: null,
@@ -38,6 +41,8 @@ export default new Vuex.Store({
             state.baseUrl = payload
             localStorage.setItem('apiUrl', payload)
         },
+        //Login
+        setLoginRequest: (state, payload) => {state.loginRequest = payload},
         
         //office
         setOfficeRequest: (state, payload) => {state.officeRequest = payload},
@@ -61,6 +66,21 @@ export default new Vuex.Store({
         
     },
     actions: {
+        //login
+        login: ({state}) => {
+          const payload = state.loginRequest
+            return new Promise((resolve, reject) =>{
+                axios.post(state.baseUrl + 'Authentication/login', payload)
+                    .then(response => {
+                        localStorage.setItem('jwt', response.data.token)
+                        resolve(response)
+                    })
+                    .catch((err) => {
+                        reject()
+                        console.log('ERROR', err)
+                    })
+            })
+        },
         
         //Office
         getAllOffice: ({state}) => {
@@ -146,13 +166,15 @@ export default new Vuex.Store({
         
         //vehicles
         getAllVehiclesRequest: ({state}) => {
+            console.log("JWT", localStorage.getItem('jwt'))
             return new Promise((resolve, reject) => {
                 const callConfig = {
                     method: 'get',
-                    url: state.baseUrl + 'Vehicle/GetAll',
+                    url: state.baseUrl + 'Vehicle',
                     headers: {
+                        'Authorization': localStorage.getItem('jwt'),
                         'Content-Type': 'application/json'
-                    }
+                    },
                 }
                 
                 axios(callConfig)
@@ -161,6 +183,7 @@ export default new Vuex.Store({
                         resolve(response)
                     })
                     .catch(err => {
+                        console.log('Error', err)
                         reject(err)
                     })
             })

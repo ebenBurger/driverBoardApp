@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Managers;
 using driverBoard.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace driverBoard.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
+    [Microsoft.AspNetCore.Authorization.Authorize]
     [Route("[controller]")]
     [ApiController]
-    
-    public class VehicleController : Controller
+
+    /*public class VehicleController : Controller
     {
         private readonly IVehicleManager _vehicleManager;
 
@@ -99,5 +104,21 @@ namespace driverBoard.API.Controllers
                 return Problem(e.Message);
             }
         }
-    }
+    }*/
+
+    public class VehicleController : Controller
+    {
+        private readonly DriverAppContext _context;
+
+        public VehicleController(DriverAppContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
+        {
+            return await _context.Vehicles.ToListAsync();
+        }
+    } 
 }

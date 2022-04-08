@@ -24,10 +24,12 @@ export default {
     data: () => ({}),
     beforeCreate() {},
     created() {
-        this.$store.commit('setApiUrl', this.$root.urlConfig.api_url)
+        // this.$store.commit('setApiUrl', this.$root.urlConfig.api_url)
     },
     beforeMount() {},
-    mounted() {},
+    mounted() {
+        this.$store.commit('setApiUrl', this.$root.urlConfig.api_url)
+    },
     beforeUpdate() {},
     updated() {},
     methods: {},

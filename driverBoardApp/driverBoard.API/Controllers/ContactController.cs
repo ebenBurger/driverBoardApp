@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using driverBoard.API.Interface;
 using driverBoard.API.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -7,11 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace driverBoard.API.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
     
-    public class ContactController : Controller
+    public class ContactController : ControllerBase
     {
 
         private readonly IContactManager _contactManager;

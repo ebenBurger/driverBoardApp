@@ -27,7 +27,10 @@ export default [
     {
         path: '/',
         name: 'login',
-        component: login, 
+        component: login,
+        meta: {
+            requiresAuth: false
+        }
     },
     {
         path: '/',
@@ -38,21 +41,33 @@ export default [
                 path: '/vehicle',
                 name: 'vehicleMain',
                 component: vehicleMain,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 path: '/contact',
                 name: 'contact',
                 component: contact,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 path: '/office',
                 name: 'officeMain',
                 component: officeMain,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 path: '/driver',
                 name: 'driverMain',
                 component: driverMain,
+                meta: {
+                    requiresAuth: true
+                }
             },
         ]
     },
@@ -61,11 +76,17 @@ export default [
         path: '/addVehicle',
         name: 'addVehicle',
         component: createVehicle,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/editVehicle',
         name: 'editVehicle',
         component: editVehicle,
+        meta: {
+            requiresAuth: true
+        }
     },
     
     //additional Office pages
@@ -73,11 +94,17 @@ export default [
         path: '/addOffice',
         name: 'addOffice',
         component: createOffice,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/editOffice',
         name: 'editOffice',
         component: editOffice,
+        meta: {
+            requiresAuth: true
+        }
     },
 
     //additional Driver pages
@@ -85,11 +112,17 @@ export default [
         path: '/addDriver',
         name: 'addDriver',
         component: createDriver,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/editDriver',
         name: 'editDriver',
         component: editDriver,
+        meta: {
+            requiresAuth: true
+        }
     },
 
     //additional Contact pages
@@ -97,10 +130,16 @@ export default [
         path: '/addContact',
         name: 'addContact',
         component: createContact,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/editContact',
         name: 'editContact',
         component: editContact,
+        meta: {
+            requiresAuth: true
+        }
     },
 ]  

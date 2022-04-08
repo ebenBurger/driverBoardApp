@@ -19,7 +19,7 @@ namespace driverBoard.API.Controllers
     [Route("[controller]")]
     [ApiController]
     
-    public class AuthenticationController : Controller
+    public class AuthenticationController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -32,8 +32,7 @@ namespace driverBoard.API.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost]
-        [Route("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             var user = await _userManager.FindByNameAsync(loginModel.Username);

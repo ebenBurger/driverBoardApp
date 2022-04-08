@@ -19,6 +19,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "chart.js": "^2.9.4",
+    "js-md5": "^0.7.3",
     "sass": "^1.49.0",
     "vue": "2.6.12",
     "vue-chartjs": "^3.5.1",
